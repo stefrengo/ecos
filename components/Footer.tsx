@@ -1,10 +1,20 @@
 import Link from "next/link";
+import Image from "next/image";
 import Container from "./Container";
 import Icon from "./Icon";
+import SocialIcon, { type SocialPlatform } from "./SocialIcon";
 import { getFooterLinks } from "@/data/navigation";
 import { site, getSiteCopy } from "@/data/site";
 import { getUiCopy } from "@/data/uiCopy";
 import { localeHref, type Locale } from "@/lib/i18n";
+
+// Chiavi di data/site.ts → piattaforma icona + etichetta leggibile.
+const socialMeta: Record<string, { platform: SocialPlatform; label: string }> = {
+  facebook: { platform: "facebook", label: "Facebook" },
+  instagram: { platform: "instagram", label: "Instagram" },
+  linkedin: { platform: "linkedin", label: "LinkedIn" },
+  twitter: { platform: "twitter", label: "X" },
+};
 
 export default function Footer({ locale }: { locale: Locale }) {
   const year = new Date().getFullYear();
@@ -55,30 +65,35 @@ export default function Footer({ locale }: { locale: Locale }) {
       <div className="bg-navy-dark text-white">
         <Container className="grid gap-10 py-14 sm:grid-cols-2 lg:grid-cols-5">
           <div className="lg:col-span-2">
-            <Link
-              href={localeHref(locale, "/")}
-              className="font-display text-2xl font-semibold text-white"
-            >
-              {site.name}
+            <Link href={localeHref(locale, "/")} className="inline-block">
+              <Image
+                src="/images/ecos-logo-white.png"
+                alt={site.name}
+                width={1757}
+                height={480}
+                className="h-9 w-auto"
+              />
             </Link>
             <p className="mt-4 max-w-xs text-sm leading-relaxed text-white/70">
               {copy.description}
             </p>
             <div className="mt-6 flex gap-3">
-              {Object.entries(site.social).map(([key, href]) => (
-                <a
-                  key={key}
-                  href={href}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-white/20 text-white/80 hover:border-white hover:text-white"
-                  aria-label={`ECOS su ${key}`}
-                >
-                  <span className="text-xs font-semibold uppercase">
-                    {key.slice(0, 2)}
-                  </span>
-                </a>
-              ))}
+              {Object.entries(site.social).map(([key, href]) => {
+                const meta = socialMeta[key];
+                if (!meta) return null;
+                return (
+                  <a
+                    key={key}
+                    href={href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-white/20 text-white/80 transition-colors hover:border-white hover:bg-white/10 hover:text-white"
+                    aria-label={`ECOS su ${meta.label}`}
+                  >
+                    <SocialIcon platform={meta.platform} className="h-4 w-4" />
+                  </a>
+                );
+              })}
             </div>
           </div>
 

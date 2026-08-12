@@ -21,10 +21,10 @@ export const site = {
   },
   hours: "Lun–Ven, 9:00–18:00", // [SEGNAPOSTO] confermare orari ufficiali
   social: {
-    facebook: "https://www.facebook.com/ecosorg/",
-    instagram: "https://www.instagram.com/ecos_europe",
-    linkedin: "https://www.linkedin.com/company/ecosorg/",
-    twitter: "https://twitter.com/ecos_europe",
+    facebook: "https://www.facebook.com/ecosorg",
+    instagram: "https://www.instagram.com/ecos_europe/",
+    linkedin: "https://www.linkedin.com/company/14036628/",
+    twitter: "https://x.com/ecos_europe",
   },
   happyClubUrl: "https://ecos-europe.com/happy/",
 } as const;
