@@ -37,8 +37,8 @@ export default function PublicationDetailPage({
       />
       <Container className="py-16 sm:py-20">
         <div className="grid gap-10 lg:grid-cols-[0.9fr,1.3fr]">
-          <div className="flex aspect-[4/3] items-center justify-center rounded-xl2 border border-line bg-gradient-to-br from-sky-light to-forest-light">
-            <Icon name="mail" className="h-10 w-10 text-sky opacity-60" />
+          <div className="flex aspect-[4/3] items-center justify-center rounded-xl2 border border-line bg-gradient-to-br from-purple-light to-navy-light">
+            <Icon name="mail" className="h-10 w-10 text-purple opacity-60" />
           </div>
           <div>
             <div className="flex flex-wrap gap-2 text-xs font-medium text-ink-soft">
@@ -62,7 +62,7 @@ export default function PublicationDetailPage({
               type="button"
               disabled
               title="Il file reale sarà collegato in una fase successiva"
-              className="mt-8 inline-flex items-center gap-2 rounded-full bg-forest px-6 py-3.5 text-[15px] font-semibold text-white opacity-60"
+              className="mt-8 inline-flex items-center gap-2 rounded-full bg-navy px-6 py-3.5 text-[15px] font-semibold text-white opacity-60"
             >
               Scarica la pubblicazione
               <Icon name="arrowRight" className="h-4 w-4" />

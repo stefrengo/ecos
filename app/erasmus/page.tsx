@@ -8,9 +8,9 @@ import Icon from "@/components/Icon";
 import { erasmusMobilityRequest, erasmusHostingOffer } from "@/data/forms";
 
 export const metadata: Metadata = {
-  title: "Mobilità e formazione Erasmus+",
+  title: "Mobilità Erasmus+",
   description:
-    "Programmi di mobilità Erasmus+ per organizzazioni, professionisti, educatori e studenti, in Italia e in Europa.",
+    "Job shadowing, study visit, formazione e scambi per giovani, educatori, operatori, tecnici sportivi e personale.",
 };
 
 const outActivities = [
@@ -50,7 +50,7 @@ function CheckList({ items }: { items: string[] }) {
     <ul className="grid gap-2.5 sm:grid-cols-2">
       {items.map((item) => (
         <li key={item} className="flex items-start gap-2.5 text-sm text-ink-soft">
-          <Icon name="check" className="mt-0.5 h-4 w-4 shrink-0 text-forest" />
+          <Icon name="check" className="mt-0.5 h-4 w-4 shrink-0 text-navy" />
           {item}
         </li>
       ))}
@@ -61,14 +61,14 @@ function CheckList({ items }: { items: string[] }) {
 export default function ErasmusPage() {
   return (
     <>
-      <Breadcrumb items={[{ label: "Home", href: "/" }, { label: "Erasmus+" }]} />
+      <Breadcrumb items={[{ label: "Home", href: "/" }, { label: "Mobilità Erasmus+" }]} />
       <Hero
         compact
-        eyebrow="Mobilità internazionale"
-        title="Imparare, condividere e crescere attraverso l&rsquo;Europa"
-        subtitle="Progettiamo esperienze formative internazionali che permettono a organizzazioni, professionisti, educatori e studenti di conoscere nuovi metodi di lavoro, sviluppare competenze e costruire collaborazioni europee durature."
-        primaryAction={{ label: "Richiedi un programma di mobilità", href: "#richiedi" }}
-        secondaryAction={{ label: "Offri una mobilità", href: "#offri" }}
+        eyebrow="02 · Mobilità Erasmus+"
+        title="Esperienze di scambio, formazione e apprendimento in Europa."
+        subtitle="Realizziamo programmi di mobilità Erasmus+ dedicati ai giovani e ai professionisti che lavorano con loro: educatori, operatori, tecnici sportivi e personale delle organizzazioni. Organizziamo job shadowing, study visit, percorsi formativi e opportunità di scambio, sia all'estero presso organizzazioni partner sia in Italia presso ECOS."
+        primaryAction={{ label: "Scopri le opportunità in uscita", href: "#richiedi" }}
+        secondaryAction={{ label: "Organizza una mobilità presso ECOS", href: "#offri" }}
       />
 
       <section className="py-16 sm:py-20">

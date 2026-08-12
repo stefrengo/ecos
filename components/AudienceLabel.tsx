@@ -1,19 +1,19 @@
 import { cn } from "@/lib/utils";
 
 const toneClasses: Record<string, string> = {
-  forest: "bg-forest-light text-forest-dark",
-  coral: "bg-coral-light text-coral-dark",
-  sky: "bg-sky-light text-sky",
-  sun: "bg-sun-light text-ink",
+  navy: "bg-navy-light text-navy-dark",
+  pink: "bg-pink-light text-pink-dark",
+  purple: "bg-purple-light text-purple",
+  orange: "bg-orange-light text-ink",
 };
 
 export default function AudienceLabel({
   children,
-  tone = "forest",
+  tone = "navy",
   className,
 }: {
   children: React.ReactNode;
-  tone?: "forest" | "coral" | "sky" | "sun";
+  tone?: "navy" | "pink" | "purple" | "orange";
   className?: string;
 }) {
   return (

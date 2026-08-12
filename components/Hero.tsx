@@ -26,8 +26,8 @@ export default function Hero({
 }) {
   return (
     <section className="relative overflow-hidden bg-mist">
-      <Blob tone="forest" className="-left-24 -top-24 h-80 w-80 opacity-70" />
-      <Blob tone="sun" className="-right-16 top-24 h-64 w-64 opacity-60" />
+      <Blob tone="navy" className="-left-24 -top-24 h-80 w-80 opacity-70" />
+      <Blob tone="orange" className="-right-16 top-24 h-64 w-64 opacity-60" />
       <Container
         className={`relative grid items-center gap-12 ${
           compact ? "py-14 sm:py-20" : "py-16 sm:py-24"
@@ -35,7 +35,7 @@ export default function Hero({
       >
         <div className="animate-rise">
           {eyebrow && (
-            <p className="mb-4 inline-flex items-center rounded-full bg-forest-light px-4 py-1.5 text-sm font-semibold text-forest-dark">
+            <p className="mb-4 inline-flex items-center rounded-full bg-navy-light px-4 py-1.5 text-sm font-semibold text-navy-dark">
               {eyebrow}
             </p>
           )}
@@ -51,7 +51,7 @@ export default function Hero({
               {primaryAction && (
                 <Link
                   href={primaryAction.href}
-                  className="inline-flex items-center gap-2 rounded-full bg-coral px-6 py-3.5 text-[15px] font-semibold text-white shadow-sm transition-colors hover:bg-coral-dark"
+                  className="inline-flex items-center gap-2 rounded-full bg-pink px-6 py-3.5 text-[15px] font-semibold text-white shadow-sm transition-colors hover:bg-pink-dark"
                 >
                   {primaryAction.label}
                   <Icon name="arrowRight" className="h-4 w-4" />
@@ -69,7 +69,7 @@ export default function Hero({
           )}
 
           {orientation && (
-            <p className="mt-8 max-w-xl border-l-2 border-forest/40 pl-4 text-sm leading-relaxed text-ink-soft">
+            <p className="mt-8 max-w-xl border-l-2 border-navy/40 pl-4 text-sm leading-relaxed text-ink-soft">
               {orientation}
             </p>
           )}
@@ -77,12 +77,12 @@ export default function Hero({
 
         {!compact && (
           <div className="relative">
-            <div className="aspect-[4/3] w-full overflow-hidden rounded-xl2 border border-line bg-gradient-to-br from-forest-light via-sun-light to-sky-light shadow-soft">
+            <div className="aspect-[4/3] w-full overflow-hidden rounded-xl2 border border-line bg-gradient-to-br from-navy-light via-orange-light to-purple-light shadow-soft">
               {/* [SEGNAPOSTO IMMAGINE] Sostituire con una fotografia autentica che
                   rappresenti partecipazione, collaborazione e giovani in attività reali. */}
               <div className="flex h-full w-full flex-col items-center justify-center gap-3 p-8 text-center">
-                <Icon name="handshake" className="h-10 w-10 text-forest-dark" />
-                <p className="text-sm font-medium text-forest-dark">
+                <Icon name="handshake" className="h-10 w-10 text-navy-dark" />
+                <p className="text-sm font-medium text-navy-dark">
                   {imageAlt ??
                     "Spazio riservato a una fotografia autentica delle attività ECOS"}
                 </p>

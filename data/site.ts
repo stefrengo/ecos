@@ -1,28 +1,32 @@
 // Dati generali dell'organizzazione.
-// ATTENZIONE: i valori contrassegnati con [SEGNAPOSTO] sono provvisori e devono
-// essere sostituiti con le informazioni ufficiali di ECOS prima della pubblicazione.
+// Valori allineati alla strategia PDF (hero, claim) e al sito live ecos-europe.com
+// (indirizzo, email, social). Restano da confermare con ECOS: telefono e orari.
 
 export const site = {
   name: "ECOS",
-  legalName: "[SEGNAPOSTO] ECOS – Ente per la Cooperazione e l'Opportunità Sociale",
-  tagline: "Costruiamo opportunità, insieme.",
+  legalName: "ECOS – European Culture and Sport Organization",
+  tagline: "Un hub europeo di servizi sportivi e culturali per i giovani.",
+  pillars: "ENGAGE · CONNECT · EMPOWER",
   description:
-    "ECOS crea percorsi educativi per bambini e giovani, esperienze europee, progetti di cooperazione e partnership ad impatto sociale.",
-  url: "https://www.ecos-europe.example", // [SEGNAPOSTO] dominio definitivo
-  email: "info@[SEGNAPOSTO-DOMINIO].it",
-  phone: "+39 000 000 0000", // [SEGNAPOSTO]
+    "ECOS crea opportunità per minori e giovani adulti attraverso laboratori sportivi e culturali, mobilità europea e progetti di cooperazione. Lavoriamo con servizi, scuole, professionisti, organizzazioni europee e imprese per trasformare attività concrete in percorsi di crescita, relazione e autonomia.",
+  // [SEGNAPOSTO] impostare prima il dominio di prova su tophost, poi passare a
+  // https://www.ecos-europe.com al momento della migrazione definitiva (vedi skill,
+  // sezione "Migrazione a ecos-europe.com").
+  url: "https://ecos-europe-trial.example",
+  email: "info@ecos-europe.com",
+  phone: "+39 000 000 0000", // [SEGNAPOSTO] verificare numero ufficiale attuale
   address: {
-    line1: "[SEGNAPOSTO] Via da definire, 1",
-    city: "[SEGNAPOSTO] Città",
-    postalCode: "00000",
+    line1: "Via Britannia 54",
+    city: "Roma",
+    postalCode: "00183",
     country: "Italia",
   },
-  hours: "Lun–Ven, 9:00–18:00 [SEGNAPOSTO orari ufficiali]",
+  hours: "Lun–Ven, 9:00–18:00", // [SEGNAPOSTO] confermare orari ufficiali
   social: {
-    facebook: "https://facebook.com/[segnaposto]",
-    instagram: "https://instagram.com/[segnaposto]",
-    linkedin: "https://linkedin.com/company/[segnaposto]",
-    youtube: "https://youtube.com/@[segnaposto]",
+    facebook: "https://www.facebook.com/ecosorg/",
+    instagram: "https://www.instagram.com/ecos_europe",
+    linkedin: "https://www.linkedin.com/company/ecosorg/",
+    twitter: "https://twitter.com/ecos_europe",
   },
   happyClubUrl: "https://ecos-europe.com/happy/",
 } as const;

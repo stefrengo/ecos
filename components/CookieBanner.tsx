@@ -43,7 +43,7 @@ export default function CookieBanner() {
       <p className="text-sm leading-relaxed text-ink-soft">
         Utilizziamo cookie tecnici necessari al funzionamento del sito. Con il tuo
         consenso potremmo usare anche cookie di misurazione, descritti nella{" "}
-        <Link href="/cookie-policy" className="font-semibold text-forest-dark">
+        <Link href="/cookie-policy" className="font-semibold text-navy-dark">
           cookie policy
         </Link>
         .
@@ -52,7 +52,7 @@ export default function CookieBanner() {
         <button
           type="button"
           onClick={() => handleChoice("accepted")}
-          className="rounded-full bg-forest px-5 py-2.5 text-sm font-semibold text-white hover:bg-forest-dark"
+          className="rounded-full bg-navy px-5 py-2.5 text-sm font-semibold text-white hover:bg-navy-dark"
         >
           Accetta tutti
         </button>

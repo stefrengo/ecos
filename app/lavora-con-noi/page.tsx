@@ -54,7 +54,7 @@ export default function LavoraConNoiPage() {
                 action={
                   <a
                     href="/contatti?tipo=lavora-con-noi"
-                    className="inline-flex items-center gap-2 rounded-full bg-coral px-6 py-3 text-sm font-semibold text-white hover:bg-coral-dark"
+                    className="inline-flex items-center gap-2 rounded-full bg-pink px-6 py-3 text-sm font-semibold text-white hover:bg-pink-dark"
                   >
                     Invia una candidatura spontanea
                   </a>

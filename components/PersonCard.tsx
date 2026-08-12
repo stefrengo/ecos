@@ -15,7 +15,7 @@ export default function PersonCard({
 }) {
   return (
     <div className="flex h-full flex-col rounded-xl2 border border-line bg-surface p-6 shadow-card">
-      <div className="mb-4 flex h-16 w-16 items-center justify-center rounded-full bg-forest-light text-sm font-semibold text-forest-dark">
+      <div className="mb-4 flex h-16 w-16 items-center justify-center rounded-full bg-navy-light text-sm font-semibold text-navy-dark">
         {/* [SEGNAPOSTO FOTO] sostituire con fotografia reale della persona */}
         {name
           .split(" ")
@@ -24,7 +24,7 @@ export default function PersonCard({
           .join("")}
       </div>
       <h3 className="font-display text-lg text-ink">{name}</h3>
-      <p className="text-sm font-medium text-forest-dark">{role}</p>
+      <p className="text-sm font-medium text-navy-dark">{role}</p>
       {expertise && (
         <p className="mt-1 text-xs uppercase tracking-wide text-ink-soft">
           {expertise}
@@ -36,7 +36,7 @@ export default function PersonCard({
           href={linkedin}
           target="_blank"
           rel="noopener noreferrer"
-          className="mt-4 inline-flex items-center gap-1.5 text-sm font-semibold text-forest-dark"
+          className="mt-4 inline-flex items-center gap-1.5 text-sm font-semibold text-navy-dark"
         >
           Profilo LinkedIn
           <Icon name="external" className="h-3.5 w-3.5" />

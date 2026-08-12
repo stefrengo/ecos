@@ -1,23 +1,16 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 import Container from "@/components/Container";
 import Hero from "@/components/Hero";
-import SectionHeading from "@/components/SectionHeading";
 import Breadcrumb from "@/components/Breadcrumb";
-import PartnerLogoGrid from "@/components/PartnerLogoGrid";
-import CTASection from "@/components/CTASection";
+import Icon from "@/components/Icon";
 import { networks } from "@/data/networks";
 
 export const metadata: Metadata = {
   title: "Network",
   description:
-    "Le reti locali, nazionali ed europee di cui ECOS fa parte per condividere competenze e moltiplicare l'impatto dei progetti.",
+    "ECOS fa parte di network internazionali che permettono di condividere pratiche, costruire nuove collaborazioni e contribuire al dibattito europeo su sport, inclusione e salute mentale.",
 };
-
-const scopes: { key: "locale" | "nazionale" | "europeo"; label: string }[] = [
-  { key: "locale", label: "Reti locali" },
-  { key: "nazionale", label: "Reti nazionali" },
-  { key: "europeo", label: "Reti europee" },
-];
 
 export default function NetworkPage() {
   return (
@@ -25,38 +18,60 @@ export default function NetworkPage() {
       <Breadcrumb items={[{ label: "Home", href: "/" }, { label: "Network" }]} />
       <Hero
         compact
-        eyebrow="Network"
-        title="Le reti di cui facciamo parte"
-        subtitle="Collaboriamo con reti locali, nazionali ed europee per condividere competenze, costruire alleanze e moltiplicare l&rsquo;impatto dei nostri progetti."
+        eyebrow="I nostri network"
+        title="Una rete europea di competenze e organizzazioni."
+        subtitle="ECOS fa parte di network internazionali che ci permettono di condividere pratiche, costruire nuove collaborazioni e contribuire al dibattito europeo su sport, inclusione e salute mentale."
       />
 
       <section className="py-16 sm:py-20">
-        <Container className="space-y-14">
-          {scopes.map((scope) => {
-            const items = networks.filter((n) => n.scope === scope.key);
-            if (items.length === 0) return null;
-            return (
-              <div key={scope.key}>
-                <SectionHeading title={scope.label} />
-                <div className="mt-6">
-                  <PartnerLogoGrid partners={items} />
+        <Container>
+          <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+            {networks.map((network) => (
+              <div
+                key={network.name}
+                className="flex h-full flex-col justify-between rounded-xl2 border border-line bg-surface p-7"
+              >
+                <div>
+                  <h2 className="font-display text-2xl text-ink">{network.name}</h2>
+                  <p className="mt-3 text-[15px] leading-relaxed text-ink-soft">
+                    {network.description}
+                  </p>
                 </div>
+                <Link
+                  href={network.href}
+                  className="mt-6 inline-flex items-center gap-2 self-start rounded-full border border-ink/15 px-5 py-2.5 text-sm font-semibold text-ink hover:border-ink/30"
+                >
+                  Scopri il sito {network.name}
+                  <Icon name="arrowRight" className="h-4 w-4" />
+                </Link>
               </div>
-            );
-          })}
-          <p className="text-sm text-ink-soft">
-            [SEGNAPOSTO] I nomi e i loghi mostrati sono segnaposto: sostituire con le
-            reti e i partner reali di ECOS.
+            ))}
+
+            <div className="flex h-full flex-col justify-between rounded-xl2 bg-navy p-7 text-white">
+              <div>
+                <h2 className="font-display text-2xl">Collabora con ECOS</h2>
+                <p className="mt-3 text-[15px] leading-relaxed text-white/80">
+                  Se rappresenti un&rsquo;organizzazione interessata a entrare
+                  in contatto con la nostra rete europea, raccontaci chi sei.
+                </p>
+              </div>
+              <Link
+                href="/contatti"
+                className="mt-6 inline-flex items-center gap-2 self-start rounded-full bg-white px-5 py-2.5 text-sm font-semibold text-navy-dark"
+              >
+                Contattaci
+                <Icon name="arrowRight" className="h-4 w-4" />
+              </Link>
+            </div>
+          </div>
+
+          <p className="mt-10 text-sm text-ink-soft">
+            [SEGNAPOSTO] Loghi ufficiali di EWOS ed EASMH e link ai rispettivi
+            siti da inserire; il PDF prevede inoltre lo spazio per
+            &ldquo;altre reti future&rdquo;.
           </p>
         </Container>
       </section>
-
-      <CTASection
-        title="Rappresenti una rete o un&rsquo;organizzazione?"
-        text="Se condividi i nostri obiettivi e vuoi collaborare, raccontaci la tua rete e i temi di interesse comune."
-        primaryLabel="Parla con il team ECOS"
-        primaryHref="/contatti"
-      />
     </>
   );
 }

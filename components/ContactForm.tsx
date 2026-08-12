@@ -15,24 +15,24 @@ export default function ContactForm() {
         </div>
         <ul className="space-y-4 text-sm text-ink-soft">
           <li className="flex items-start gap-3">
-            <Icon name="mail" className="mt-0.5 h-5 w-5 text-forest-dark" />
-            <a href={`mailto:${contact.email}`} className="hover:text-forest-dark">
+            <Icon name="mail" className="mt-0.5 h-5 w-5 text-navy-dark" />
+            <a href={`mailto:${contact.email}`} className="hover:text-navy-dark">
               {contact.email}
             </a>
           </li>
           <li className="flex items-start gap-3">
-            <Icon name="phone" className="mt-0.5 h-5 w-5 text-forest-dark" />
+            <Icon name="phone" className="mt-0.5 h-5 w-5 text-navy-dark" />
             <span>{contact.phone}</span>
           </li>
           <li className="flex items-start gap-3">
-            <Icon name="pin" className="mt-0.5 h-5 w-5 text-forest-dark" />
+            <Icon name="pin" className="mt-0.5 h-5 w-5 text-navy-dark" />
             <span>
               {contact.address.line1}, {contact.address.postalCode}{" "}
               {contact.address.city}
             </span>
           </li>
           <li className="flex items-start gap-3">
-            <Icon name="clock" className="mt-0.5 h-5 w-5 text-forest-dark" />
+            <Icon name="clock" className="mt-0.5 h-5 w-5 text-navy-dark" />
             <span>{contact.hours}</span>
           </li>
         </ul>

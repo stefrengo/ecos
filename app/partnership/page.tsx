@@ -9,9 +9,9 @@ import { corporatePartnership } from "@/data/forms";
 import { site } from "@/data/site";
 
 export const metadata: Metadata = {
-  title: "Corporate e partnership",
+  title: "Responsabilità sociale e impatto",
   description:
-    "Programmi di responsabilità sociale d'impresa: knowledge building, volontariato aziendale, eventi a impatto sociale e relazioni di impatto.",
+    "Programmi strutturati per aziende: volontariato, partecipazione dei dipendenti e sostegno diretto ai laboratori.",
 };
 
 const steps = [
@@ -77,18 +77,23 @@ const programs = [
 export default function PartnershipPage() {
   return (
     <>
-      <Breadcrumb items={[{ label: "Home", href: "/" }, { label: "Partnership" }]} />
+      <Breadcrumb
+        items={[
+          { label: "Home", href: "/" },
+          { label: "Responsabilità sociale e impatto" },
+        ]}
+      />
       <Hero
         compact
-        eyebrow="Per imprese e fondazioni"
-        title="Trasformiamo la responsabilità sociale in partecipazione concreta"
-        subtitle="Affianchiamo le imprese nella progettazione di programmi di responsabilità sociale capaci di coinvolgere realmente dipendenti, professionisti e comunità. Ogni percorso viene costruito in base agli obiettivi dell'azienda e può includere formazione, volontariato, eventi, sostegno ai progetti e misurazione dell'impatto generato."
-        primaryAction={{ label: "Richiedi informazioni", href: "#richiedi" }}
+        eyebrow="04 · Responsabilità sociale e impatto"
+        title="Programmi strutturati per le aziende."
+        subtitle="Costruiamo partnership che permettono alle imprese di partecipare concretamente alle nostre attività: programmi di volontariato aziendale, coinvolgimento dei dipendenti e sostegno diretto ai laboratori rivolti ai giovani."
+        primaryAction={{ label: "Costruiamo una partnership", href: "#richiedi" }}
       />
 
       <section className="py-4">
         <Container>
-          <p className="rounded-xl2 border-l-4 border-forest bg-forest-light/50 px-6 py-5 text-[15px] leading-relaxed text-ink">
+          <p className="rounded-xl2 border-l-4 border-navy bg-navy-light/50 px-6 py-5 text-[15px] leading-relaxed text-ink">
             ECOS progetta programmi strutturati di cooperazione tra imprese,
             professionisti, organizzazioni sociali e beneficiari: non proponiamo
             soltanto attività occasionali.
@@ -105,7 +110,7 @@ export default function PartnershipPage() {
                 key={step}
                 className="rounded-xl2 border border-line bg-surface p-5"
               >
-                <span className="font-display text-2xl text-forest-dark">
+                <span className="font-display text-2xl text-navy-dark">
                   {String(i + 1).padStart(2, "0")}
                 </span>
                 <p className="mt-2 text-sm leading-relaxed text-ink-soft">{step}</p>

@@ -32,7 +32,7 @@ export default function LabDetailPage({ params }: { params: { slug: string } }) 
         ]}
       />
       <Container className="py-16 sm:py-20">
-        <p className="mb-3 text-sm font-semibold uppercase tracking-wide text-forest">
+        <p className="mb-3 text-sm font-semibold uppercase tracking-wide text-navy">
           {lab.category === "sport" ? "Sport" : "Cultura"}
         </p>
         <h1 className="font-display text-3xl text-ink sm:text-4xl">{lab.title}</h1>

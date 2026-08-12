@@ -6,16 +6,16 @@ import { cn } from "@/lib/utils";
  */
 export default function Blob({
   className,
-  tone = "forest",
+  tone = "navy",
 }: {
   className?: string;
-  tone?: "forest" | "coral" | "sun" | "sky";
+  tone?: "navy" | "pink" | "orange" | "purple";
 }) {
   const fill: Record<string, string> = {
-    forest: "#DCEBE4",
-    coral: "#FDE3D8",
-    sun: "#FFF3D6",
-    sky: "#E1EAFD",
+    navy: "#E7ECF1",
+    pink: "#FCE4F0",
+    orange: "#FDECD4",
+    purple: "#F1E3F3",
   };
   return (
     <svg

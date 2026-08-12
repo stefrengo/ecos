@@ -9,42 +9,53 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        mist: "#F6F8F3",
+        // Palette ECOS — estratta a colore esatto dai mockup ufficiali (PDF strategia +
+        // grafica) via campionamento pixel. Non modificare senza aggiornare anche la skill.
+        mist: "#FBFAF7", // crema di sfondo
+        "mist-warm": "#F3F0E8", // crema calda alternativa (sezioni "aree tematiche")
+        "mist-cool": "#F5F6F7", // grigio-azzurro alternativo (sezioni network/eventi)
+        "mist-pink": "#F7F2F6", // rosa tenue alternativo (sezione eventi/cinema)
         surface: "#FFFFFF",
-        ink: "#152922",
-        "ink-soft": "#43594F",
-        forest: {
-          DEFAULT: "#1F6F5C",
-          dark: "#134B3D",
-          light: "#DCEBE4",
+        ink: "#0F2A47", // testo principale / titoli (= navy-dark)
+        "ink-soft": "#4C5F72", // testo secondario
+        navy: {
+          DEFAULT: "#153B62",
+          dark: "#0F2A47",
+          light: "#E7ECF1",
         },
-        coral: {
-          DEFAULT: "#F0603A",
-          dark: "#C94B2A",
-          light: "#FDE3D8",
+        pink: {
+          DEFAULT: "#EA2F8C",
+          dark: "#C21F72",
+          light: "#FCE4F0",
         },
-        sun: {
-          DEFAULT: "#FFC94A",
-          light: "#FFF3D6",
+        purple: {
+          DEFAULT: "#8E3A98",
+          dark: "#6E2B76",
+          light: "#F1E3F3",
         },
-        sky: {
-          DEFAULT: "#2F6FED",
-          light: "#E1EAFD",
+        orange: {
+          DEFAULT: "#F29A33",
+          dark: "#D97F1A",
+          light: "#FDECD4",
         },
-        line: "#E1E7DE",
+        line: "#DEE4EA",
       },
       fontFamily: {
-        // Font di produzione previsti: "Fraunces" (display) e "Manrope" (testo).
-        // Sostituire con next/font/google (o file self-hosted) non appena la rete di build
-        // consente il download da fonts.googleapis.com / fonts.gstatic.com.
+        // Un'unica famiglia (Manrope, self-hosted via @fontsource-variable/manrope) per
+        // titoli e testo, come nei mockup: nessuna serif, nessuna chiamata a Google
+        // Fonts (privacy + performance). I titoli usano solo pesi maggiori (700/800).
         display: [
-          "Fraunces",
-          "Iowan Old Style",
-          "Georgia",
-          "ui-serif",
-          "serif",
+          "Manrope Variable",
+          "Manrope",
+          "-apple-system",
+          "BlinkMacSystemFont",
+          "Segoe UI",
+          "ui-sans-serif",
+          "system-ui",
+          "sans-serif",
         ],
         sans: [
+          "Manrope Variable",
           "Manrope",
           "-apple-system",
           "BlinkMacSystemFont",
@@ -59,8 +70,8 @@ const config: Config = {
         blob: "42% 58% 55% 45% / 45% 40% 60% 55%",
       },
       boxShadow: {
-        soft: "0 20px 45px -25px rgba(21, 41, 34, 0.35)",
-        card: "0 12px 30px -18px rgba(21, 41, 34, 0.28)",
+        soft: "0 20px 45px -25px rgba(15, 42, 71, 0.35)",
+        card: "0 12px 30px -18px rgba(15, 42, 71, 0.28)",
       },
       maxWidth: {
         content: "76rem",

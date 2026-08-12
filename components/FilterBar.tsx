@@ -20,7 +20,7 @@ export default function FilterBar({ groups }: { groups: FilterGroup[] }) {
             id={group.id}
             value={group.value}
             onChange={(e) => group.onChange(e.target.value)}
-            className="rounded-full border border-line bg-surface px-4 py-2.5 text-sm text-ink focus-visible:border-forest"
+            className="rounded-full border border-line bg-surface px-4 py-2.5 text-sm text-ink focus-visible:border-navy"
           >
             <option value="">{group.label}</option>
             {group.options.map((opt) => (

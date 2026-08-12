@@ -8,16 +8,16 @@ export default function ProjectCard({ project }: { project: Project }) {
       href={`/progetti/${project.slug}`}
       className="group flex h-full flex-col overflow-hidden rounded-xl2 border border-line bg-surface shadow-card transition-all hover:-translate-y-1 hover:shadow-soft"
     >
-      <div className="flex aspect-[16/9] items-center justify-center bg-gradient-to-br from-forest-light via-sun-light to-sky-light">
+      <div className="flex aspect-[16/9] items-center justify-center bg-gradient-to-br from-navy-light via-orange-light to-purple-light">
         {/* [SEGNAPOSTO] immagine/logo reale del progetto */}
-        <Icon name="globe" className="h-8 w-8 text-forest-dark opacity-70" />
+        <Icon name="globe" className="h-8 w-8 text-navy-dark opacity-70" />
       </div>
       <div className="flex flex-1 flex-col p-6">
         <div className="mb-2 flex flex-wrap items-center gap-2">
           <span
             className={`rounded-full px-3 py-1 text-xs font-semibold ${
               project.status === "in corso"
-                ? "bg-forest-light text-forest-dark"
+                ? "bg-navy-light text-navy-dark"
                 : "bg-line text-ink-soft"
             }`}
           >
@@ -44,7 +44,7 @@ export default function ProjectCard({ project }: { project: Project }) {
             <dd>{project.role}</dd>
           </div>
         </dl>
-        <span className="mt-4 inline-flex items-center gap-2 text-sm font-semibold text-forest-dark">
+        <span className="mt-4 inline-flex items-center gap-2 text-sm font-semibold text-navy-dark">
           Scheda progetto
           <Icon
             name="arrowRight"

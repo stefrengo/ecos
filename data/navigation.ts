@@ -10,45 +10,54 @@ export type NavItem = {
   children?: NavChild[];
 };
 
-export const whatWeDo: NavChild[] = [
+// Architettura di navigazione = "Architettura definitiva consigliata" del PDF
+// strategico: le 4 aree operative (i "quadranti") restano il cuore del menu.
+// Le pagine già presenti nel repo ma non previste nel PDF (chi-siamo, comitato
+// scientifico, pubblicazioni, lavora con noi) sono mantenute come pagine
+// istituzionali secondarie, fuori dal menu principale, solo nel footer.
+
+export const quadrants: NavChild[] = [
   {
-    label: "Laboratori",
+    label: "Laboratori di emozioni",
     href: "/laboratori",
-    description: "Sport, cultura e inclusione per bambini e giovani.",
+    description: "Laboratori sportivi e culturali certificati.",
   },
   {
-    label: "Erasmus+",
+    label: "Mobilità Erasmus+",
     href: "/erasmus",
-    description: "Mobilità e formazione internazionale.",
+    description: "Job shadowing, study visit, formazione e scambi.",
   },
   {
-    label: "Cooperazione europea",
+    label: "Progetti di cooperazione",
     href: "/progetti",
-    description: "Progetti e partenariati internazionali.",
+    description: "Progetti europei, ricerca e partnership internazionali.",
   },
   {
-    label: "Corporate e partnership",
+    label: "Responsabilità sociale e impatto",
     href: "/partnership",
-    description: "Programmi di responsabilità sociale d'impresa.",
+    description: "Programmi strutturati per aziende.",
   },
 ];
 
+// Alias retro-compatibile: alcuni componenti esistenti importano ancora "whatWeDo".
+export const whatWeDo = quadrants;
+
 export const mainNav: NavItem[] = [
-  { label: "Cosa facciamo", href: "/#aree", children: whatWeDo },
-  { label: "Chi siamo", href: "/chi-siamo" },
-  { label: "Comitato scientifico", href: "/comitato-scientifico" },
+  { label: "Cosa facciamo", href: "/#aree", children: quadrants },
   { label: "Network", href: "/network" },
-  { label: "Pubblicazioni", href: "/pubblicazioni" },
-  { label: "Lavora con noi", href: "/lavora-con-noi" },
+  { label: "Eventi", href: "/eventi" },
+  { label: "News", href: "/news" },
   { label: "Contatti", href: "/contatti" },
 ];
 
 export const footerLinks = {
-  aree: whatWeDo,
+  aree: quadrants,
   istituzionale: [
     { label: "Chi siamo", href: "/chi-siamo" },
     { label: "Comitato scientifico", href: "/comitato-scientifico" },
     { label: "Network", href: "/network" },
+    { label: "Eventi", href: "/eventi" },
+    { label: "News", href: "/news" },
     { label: "Pubblicazioni", href: "/pubblicazioni" },
     { label: "Lavora con noi", href: "/lavora-con-noi" },
   ],

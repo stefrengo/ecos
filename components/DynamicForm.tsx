@@ -70,9 +70,9 @@ export default function DynamicForm({
     return (
       <div
         role="status"
-        className="flex flex-col items-center rounded-xl2 border border-forest-light bg-forest-light/40 px-8 py-14 text-center"
+        className="flex flex-col items-center rounded-xl2 border border-navy-light bg-navy-light/40 px-8 py-14 text-center"
       >
-        <div className="mb-4 flex h-14 w-14 items-center justify-center rounded-full bg-forest text-white">
+        <div className="mb-4 flex h-14 w-14 items-center justify-center rounded-full bg-navy text-white">
           <Icon name="check" className="h-7 w-7" />
         </div>
         <h3 className="font-display text-2xl text-ink">Richiesta inviata</h3>
@@ -88,7 +88,7 @@ export default function DynamicForm({
   return (
     <form onSubmit={handleSubmit} noValidate className="space-y-6">
       {config.minorNotice && (
-        <p className="rounded-xl bg-sun-light px-4 py-3 text-sm leading-relaxed text-ink">
+        <p className="rounded-xl bg-orange-light px-4 py-3 text-sm leading-relaxed text-ink">
           {config.minorNotice}
         </p>
       )}
@@ -122,7 +122,7 @@ export default function DynamicForm({
       <button
         type="submit"
         disabled={status === "submitting"}
-        className="inline-flex items-center gap-2 rounded-full bg-coral px-7 py-3.5 text-[15px] font-semibold text-white transition-colors hover:bg-coral-dark disabled:opacity-60"
+        className="inline-flex items-center gap-2 rounded-full bg-pink px-7 py-3.5 text-[15px] font-semibold text-white transition-colors hover:bg-pink-dark disabled:opacity-60"
       >
         {status === "submitting" ? "Invio in corso…" : config.submitLabel}
         <Icon name="arrowRight" className="h-4 w-4" />

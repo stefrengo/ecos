@@ -7,12 +7,13 @@ import DynamicForm from "@/components/DynamicForm";
 import Icon from "@/components/Icon";
 import { sportStats, cultureStats } from "@/data/laboratories";
 import { laboratoryRegistration, happyClubProfessionals } from "@/data/forms";
+import { laboratoryProcess } from "@/data/laboratoryProcess";
 import { site } from "@/data/site";
 
 export const metadata: Metadata = {
-  title: "Laboratori",
+  title: "Laboratori di emozioni",
   description:
-    "Laboratori sportivi, culturali e digitali per bambini e giovani: scopri come partecipare o mettere a disposizione le tue competenze.",
+    "Laboratori sportivi e culturali certificati, accompagnati da un'équipe multidisciplinare e rivolti a minori e giovani adulti.",
 };
 
 export default function LaboratoriPage() {
@@ -21,16 +22,47 @@ export default function LaboratoriPage() {
       <Breadcrumb items={[{ label: "Home", href: "/" }, { label: "Laboratori" }]} />
       <Hero
         compact
-        eyebrow="Sport, cultura e inclusione"
-        title="Laboratori che creano relazioni, competenze e nuove possibilità"
-        subtitle="Lo sport, la cultura e la creatività possono diventare strumenti concreti di inclusione. I nostri laboratori offrono a bambini e giovani spazi sicuri in cui incontrarsi, esprimersi, sviluppare competenze e costruire nuovi percorsi di autonomia."
+        eyebrow="01 · Laboratori di emozioni"
+        title="Laboratori certificati, accompagnati da un'équipe multidisciplinare."
+        subtitle="Una équipe composta da operatori, educatori, tecnici sportivi e professionisti accompagna ogni ragazzo durante l'attività. I laboratori diventano spazi di relazione, espressione, osservazione e crescita e, al termine, prevedono il rilascio di un attestato. Quando il ragazzo è già seguito da un servizio, il percorso si integra con il lavoro dei professionisti di riferimento."
         primaryAction={{ label: "Iscriviti ai nostri laboratori", href: "#iscrizione" }}
         secondaryAction={{ label: "Scopri Happy Club", href: site.happyClubUrl }}
       />
 
-      <section className="py-4">
+      {/* Percorso in 6 tappe — modello ECOS, testo dal PDF strategico. */}
+      <section className="py-16 sm:py-20">
         <Container>
-          <div className="flex flex-col items-start justify-between gap-4 rounded-xl2 border border-line bg-forest-light/50 px-7 py-6 sm:flex-row sm:items-center">
+          <SectionHeading title="Il percorso del ragazzo nei laboratori ECOS" />
+          <div className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+            {laboratoryProcess.map((step) => (
+              <div
+                key={step.number}
+                className="rounded-xl2 border border-line bg-surface p-6"
+              >
+                <p className="text-sm font-semibold text-navy">{step.number}</p>
+                <h3 className="mt-2 font-display text-lg text-ink">
+                  {step.title}
+                </h3>
+                <p className="mt-2 text-sm leading-relaxed text-ink-soft">
+                  {step.description}
+                </p>
+              </div>
+            ))}
+          </div>
+          <p className="mt-8 max-w-2xl text-sm leading-relaxed text-ink-soft">
+            <strong className="text-ink">Équipe multidisciplinare:</strong>{" "}
+            operatori, educatori, tecnici sportivi e professionisti
+            accompagnano l&rsquo;intero percorso.{" "}
+            <strong className="text-ink">Laboratori certificati:</strong> i
+            percorsi sono presentati come esperienze strutturate e
+            certificate, con rilascio di attestato.
+          </p>
+        </Container>
+      </section>
+
+      <section className="bg-white py-4">
+        <Container>
+          <div className="flex flex-col items-start justify-between gap-4 rounded-xl2 border border-line bg-navy-light/50 px-7 py-6 sm:flex-row sm:items-center">
             <p className="text-[15px] leading-relaxed text-ink">
               Happy Club è il progetto ECOS dedicato allo sport e alla cultura come
               strumenti di inclusione: scopri tutte le attività.
@@ -39,7 +71,7 @@ export default function LaboratoriPage() {
               href={site.happyClubUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex shrink-0 items-center gap-2 rounded-full bg-forest px-6 py-3 text-sm font-semibold text-white hover:bg-forest-dark"
+              className="inline-flex shrink-0 items-center gap-2 rounded-full bg-navy px-6 py-3 text-sm font-semibold text-white hover:bg-navy-dark"
             >
               Scopri Happy Club
               <Icon name="external" className="h-4 w-4" />
@@ -61,7 +93,7 @@ export default function LaboratoriPage() {
                 key={stat.id}
                 className="rounded-xl2 border border-line bg-surface p-6"
               >
-                <dt className="font-display text-3xl text-forest-dark">
+                <dt className="font-display text-3xl text-navy-dark">
                   {stat.value}
                 </dt>
                 <dd className="mt-2 text-sm leading-relaxed text-ink-soft">
@@ -91,7 +123,7 @@ export default function LaboratoriPage() {
                 key={stat.id}
                 className="rounded-xl2 border border-line bg-mist p-6"
               >
-                <dt className="font-display text-3xl text-forest-dark">
+                <dt className="font-display text-3xl text-navy-dark">
                   {stat.value}
                 </dt>
                 <dd className="mt-2 text-sm leading-relaxed text-ink-soft">

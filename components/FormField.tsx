@@ -21,7 +21,7 @@ export default function FormField({
     .join(" ") || undefined;
 
   const baseInputClasses =
-    "w-full rounded-xl border border-line bg-surface px-4 py-3 text-[15px] text-ink placeholder:text-ink-soft/70 focus-visible:border-forest";
+    "w-full rounded-xl border border-line bg-surface px-4 py-3 text-[15px] text-ink placeholder:text-ink-soft/70 focus-visible:border-navy";
 
   return (
     <div className={field.fullWidth ? "sm:col-span-2" : undefined}>
@@ -29,7 +29,7 @@ export default function FormField({
         <label htmlFor={inputId} className="mb-1.5 block text-sm font-semibold text-ink">
           {field.label}
           {field.required && (
-            <span aria-hidden="true" className="ml-0.5 text-coral">
+            <span aria-hidden="true" className="ml-0.5 text-pink">
               *
             </span>
           )}
@@ -89,7 +89,7 @@ export default function FormField({
                 value={opt}
                 checked={value === opt}
                 onChange={() => onChange(opt)}
-                className="h-4 w-4 accent-forest"
+                className="h-4 w-4 accent-navy"
               />
               {opt}
             </label>
@@ -109,11 +109,11 @@ export default function FormField({
             aria-describedby={describedBy}
             checked={Boolean(value)}
             onChange={(e) => onChange(e.target.checked)}
-            className="mt-0.5 h-4 w-4 shrink-0 accent-forest"
+            className="mt-0.5 h-4 w-4 shrink-0 accent-navy"
           />
           <span>
             {field.label}
-            {field.required && <span aria-hidden="true" className="ml-0.5 text-coral">*</span>}
+            {field.required && <span aria-hidden="true" className="ml-0.5 text-pink">*</span>}
           </span>
         </label>
       )}
@@ -127,7 +127,7 @@ export default function FormField({
           aria-required={field.required}
           aria-describedby={describedBy}
           onChange={(e) => onChange(e.target.files?.[0]?.name ?? "")}
-          className="block w-full text-sm text-ink-soft file:mr-4 file:rounded-full file:border-0 file:bg-forest-light file:px-4 file:py-2.5 file:text-sm file:font-semibold file:text-forest-dark"
+          className="block w-full text-sm text-ink-soft file:mr-4 file:rounded-full file:border-0 file:bg-navy-light file:px-4 file:py-2.5 file:text-sm file:font-semibold file:text-navy-dark"
         />
       )}
 
@@ -156,7 +156,7 @@ export default function FormField({
         </p>
       )}
       {error && (
-        <p id={errorId} className="mt-1.5 text-xs font-medium text-coral-dark" role="alert">
+        <p id={errorId} className="mt-1.5 text-xs font-medium text-pink-dark" role="alert">
           {error}
         </p>
       )}

@@ -1,57 +1,63 @@
 export type ServiceArea = {
   id: string;
+  number: string;
   audience: string;
   title: string;
   description: string;
   cta: string;
   href: string;
   icon: "ball" | "plane" | "globe" | "handshake";
-  tone: "forest" | "coral" | "sky" | "sun";
+  tone: "navy" | "purple" | "pink" | "orange";
 };
 
+// I 4 "quadranti" della homepage — testo ripreso alla lettera dai mockup PDF.
 export const services: ServiceArea[] = [
   {
     id: "laboratori",
-    audience: "Per bambini, giovani, famiglie e servizi",
-    title: "Sport, cultura e inclusione",
+    number: "01",
+    audience: "Per servizi, professionisti, giovani e famiglie",
+    title: "Laboratori di emozioni",
     description:
-      "Realizziamo programmi educativi e laboratori sportivi e culturali dedicati a bambini, adolescenti e giovani adulti in condizioni di vulnerabilità. Attraverso Happy Club e i nostri progetti accompagniamo ragazzi seguiti dai Servizi Sociali, dai Servizi territoriali di Salute Mentale e dalla Giustizia Minorile in percorsi di crescita, autonomia e partecipazione.",
+      "Laboratori sportivi e culturali certificati, accompagnati da un'équipe multidisciplinare e rivolti a minori e giovani adulti.",
     cta: "Scopri i laboratori",
     href: "/laboratori",
     icon: "ball",
-    tone: "forest",
+    tone: "navy",
   },
   {
     id: "erasmus",
-    audience: "Per organizzazioni, professionisti e studenti",
-    title: "Mobilità e formazione Erasmus+",
+    number: "02",
+    audience: "Per educatori, operatori, tecnici sportivi e personale",
+    title: "Mobilità Erasmus+",
     description:
-      "Sviluppiamo programmi di mobilità Erasmus+ per organizzazioni, professionisti, educatori e studenti. Organizziamo job shadowing, visite studio, mobilità di gruppo e percorsi di apprendimento in Italia e all'estero.",
-    cta: "Scopri le opportunità Erasmus+",
+      "Job shadowing, study visit, formazione e scambi per giovani, educatori, operatori, tecnici sportivi e personale.",
+    cta: "Esplora la mobilità",
     href: "/erasmus",
     icon: "plane",
-    tone: "sky",
+    tone: "purple",
   },
   {
     id: "progetti",
+    number: "03",
     audience: "Per organizzazioni e partner europei",
-    title: "Cooperazione europea e internazionale",
+    title: "Progetti di cooperazione",
     description:
-      "Sviluppiamo e coordiniamo progetti europei insieme a una rete internazionale di organizzazioni, enti pubblici, università, professionisti e imprese. Offriamo opportunità di cooperazione e co-progettazione nell'ambito dei programmi Erasmus+, CERV, Justice, Horizon Europe e Fondo Sociale Europeo.", // [SEGNAPOSTO] verificare denominazione ufficiale dei programmi
-    cta: "Esplora i progetti",
+      "Progetti europei, ricerca, sperimentazione e partnership internazionali sui temi del disagio giovanile e dell'inclusione.",
+    cta: "Scopri i progetti",
     href: "/progetti",
     icon: "globe",
-    tone: "sun",
+    tone: "pink",
   },
   {
     id: "partnership",
+    number: "04",
     audience: "Per imprese e fondazioni",
-    title: "Partnership per l'impatto sociale",
+    title: "Responsabilità sociale e impatto",
     description:
-      "Collaboriamo con imprese che desiderano trasformare il proprio impegno sociale in esperienze concrete, strutturate e misurabili. Offriamo ai dipendenti occasioni di formazione, volontariato aziendale e partecipazione attiva, creando valore condiviso per l'impresa, le persone e la comunità.",
+      "Programmi strutturati per aziende: volontariato, partecipazione dei dipendenti e sostegno diretto ai laboratori.",
     cta: "Costruiamo una partnership",
     href: "/partnership",
     icon: "handshake",
-    tone: "coral",
+    tone: "orange",
   },
 ];

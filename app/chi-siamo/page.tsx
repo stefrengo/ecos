@@ -64,7 +64,7 @@ export default function ChiSiamoPage() {
                 key={value.title}
                 className="rounded-xl2 border border-line bg-surface p-6"
               >
-                <h3 className="font-display text-lg text-forest-dark">
+                <h3 className="font-display text-lg text-navy-dark">
                   {value.title}
                 </h3>
                 <p className="mt-2 text-sm leading-relaxed text-ink-soft">

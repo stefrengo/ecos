@@ -3,153 +3,164 @@ import Hero from "@/components/Hero";
 import Container from "@/components/Container";
 import SectionHeading from "@/components/SectionHeading";
 import ServiceCard from "@/components/ServiceCard";
-import CTASection from "@/components/CTASection";
 import Icon from "@/components/Icon";
 import { services } from "@/data/services";
+import { topics } from "@/data/topics";
+import { networks } from "@/data/networks";
+import { sportEvents, cinemaEvents } from "@/data/events";
+import { site } from "@/data/site";
 
 export default function HomePage() {
   return (
     <>
+      {/* Hero — testo ripreso alla lettera dal mockup PDF. */}
       <Hero
-        title="Costruiamo opportunità, insieme."
-        subtitle="ECOS crea percorsi educativi per bambini e giovani, esperienze europee, progetti di cooperazione e partnership ad impatto sociale."
-        primaryAction={{ label: "Scopri come partecipare", href: "#aree" }}
-        secondaryAction={{ label: "Conosci ECOS", href: "/chi-siamo" }}
-        orientation="Che tu sia un giovane, una famiglia, un professionista, un&rsquo;organizzazione o un&rsquo;impresa, qui puoi trovare il percorso giusto per partecipare."
-        imageAlt="Fotografia autentica di giovani, partecipazione e collaborazione"
+        eyebrow={site.pillars}
+        title={site.tagline}
+        subtitle={site.description}
+        primaryAction={{ label: "Scopri cosa facciamo", href: "#aree" }}
+        secondaryAction={{ label: "Contattaci", href: "/contatti" }}
+        imageAlt="Fotografia autentica di giovani, laboratori e attività ECOS"
       />
 
+      {/* I 4 quadranti operativi. */}
       <section id="aree" className="scroll-mt-20 py-16 sm:py-24">
         <Container>
-          <SectionHeading
-            eyebrow="Le nostre aree"
-            title="Scopri come partecipare"
-            subtitle="Quattro aree di intervento per creare opportunità, rafforzare le comunità e generare un impatto sociale concreto."
-          />
-          <div className="mt-12 grid gap-6 sm:grid-cols-2">
+          <div className="grid gap-6 sm:grid-cols-2">
             {services.map((service) => (
               <ServiceCard key={service.id} {...service} />
             ))}
           </div>
+        </Container>
+      </section>
 
-          <div className="mt-10 flex flex-col items-start gap-4 rounded-xl2 border border-line bg-mist px-8 py-8 sm:flex-row sm:items-center sm:justify-between">
-            <p className="max-w-lg text-[15px] leading-relaxed text-ink-soft">
-              Non sai quale percorso scegliere? Raccontaci cosa stai cercando e ti
-              aiuteremo a trovare l&rsquo;opportunità più adatta.
+      {/* Aree tematiche. */}
+      <section className="bg-mist-warm py-16 sm:py-24">
+        <Container className="grid gap-10 lg:grid-cols-[0.9fr,1.1fr] lg:items-start">
+          <p className="text-xs font-semibold uppercase tracking-wide text-navy">
+            Aree tematiche
+          </p>
+          <div>
+            <SectionHeading title="I contesti in cui concentriamo il nostro lavoro." />
+            <p className="mt-4 max-w-xl text-[15px] leading-relaxed text-ink-soft">
+              Le nostre attività si sviluppano in relazione a bisogni e
+              contesti specifici, in collaborazione con servizi, scuole e
+              professionisti.
             </p>
-            <Link
-              href="/contatti"
-              className="inline-flex shrink-0 items-center gap-2 rounded-full bg-forest px-6 py-3.5 text-[15px] font-semibold text-white hover:bg-forest-dark"
-            >
-              Parla con il team ECOS
-              <Icon name="arrowRight" className="h-4 w-4" />
-            </Link>
+            <ul className="mt-8 flex flex-wrap gap-3">
+              {topics.map((topic) => (
+                <li
+                  key={topic}
+                  className="rounded-full border border-navy/15 bg-white px-4 py-2 text-sm font-medium text-ink"
+                >
+                  {topic}
+                </li>
+              ))}
+            </ul>
           </div>
         </Container>
       </section>
 
+      {/* I nostri network. */}
       <section className="py-16 sm:py-24">
-        <Container className="grid items-center gap-12 lg:grid-cols-2">
-          <div className="order-2 aspect-[4/3] overflow-hidden rounded-xl2 border border-line bg-gradient-to-br from-sun-light to-forest-light lg:order-1">
-            {/* [SEGNAPOSTO IMMAGINE] fotografia autentica del team o delle attività */}
-            <div className="flex h-full items-center justify-center">
-              <Icon name="globe" className="h-10 w-10 text-forest-dark" />
+        <Container>
+          <SectionHeading
+            eyebrow="I nostri network"
+            title="Una rete europea di competenze e organizzazioni."
+            subtitle="ECOS fa parte di network internazionali che ci permettono di condividere pratiche, costruire nuove collaborazioni e contribuire al dibattito europeo su sport, inclusione e salute mentale."
+          />
+          <div className="mt-10 grid gap-6 sm:grid-cols-3">
+            {networks.map((network) => (
+              <div
+                key={network.name}
+                className="rounded-xl2 border border-line bg-surface p-6"
+              >
+                <h3 className="font-display text-xl text-ink">{network.name}</h3>
+                <p className="mt-2 text-sm leading-relaxed text-ink-soft">
+                  {network.description}
+                </p>
+                <Link
+                  href={network.href}
+                  className="mt-4 inline-flex items-center gap-1.5 text-sm font-semibold text-navy-dark"
+                >
+                  Scopri il sito {network.name}
+                  <Icon name="arrowRight" className="h-3.5 w-3.5" />
+                </Link>
+              </div>
+            ))}
+            <div className="rounded-xl2 border border-line bg-surface p-6">
+              <h3 className="font-display text-xl text-ink">Collabora con ECOS</h3>
+              <p className="mt-2 text-sm leading-relaxed text-ink-soft">
+                Se rappresenti un&rsquo;organizzazione interessata a entrare in
+                contatto con la nostra rete europea, raccontaci chi sei.
+              </p>
+              <Link
+                href="/contatti"
+                className="mt-4 inline-flex items-center gap-1.5 text-sm font-semibold text-navy-dark"
+              >
+                Contattaci
+                <Icon name="arrowRight" className="h-3.5 w-3.5" />
+              </Link>
             </div>
           </div>
-          <div className="order-1 lg:order-2">
-            <SectionHeading
-              eyebrow="Chi siamo"
-              title="Persone, competenze e relazioni al servizio delle comunità"
-              subtitle="ECOS progetta e realizza iniziative sociali, educative e internazionali mettendo in connessione giovani, enti, organizzazioni e imprese. Crediamo nella partecipazione, nell&rsquo;apprendimento e nella cooperazione come strumenti per creare un impatto duraturo."
-            />
-            <Link
-              href="/chi-siamo"
-              className="mt-6 inline-flex items-center gap-2 rounded-full border border-ink/15 bg-white px-6 py-3.5 text-[15px] font-semibold text-ink hover:border-ink/30"
-            >
-              Scopri chi siamo
-              <Icon name="arrowRight" className="h-4 w-4" />
-            </Link>
+        </Container>
+      </section>
+
+      {/* Eventi e comunicazione sociale. */}
+      <section className="bg-mist-pink py-16 sm:py-24">
+        <Container>
+          <SectionHeading
+            eyebrow="Eventi e comunicazione sociale"
+            title="Apriamo il dialogo sul disagio giovanile."
+            subtitle="Realizziamo eventi e iniziative di comunicazione sociale per contrastare lo stigma, creare occasioni di incontro e portare nello spazio pubblico i temi della salute mentale, dell'inclusione e del disagio giovanile attraverso sport e cinema."
+          />
+          <div className="mt-10 grid gap-6 lg:grid-cols-2">
+            <div className="rounded-xl2 border border-line bg-white p-7">
+              <p className="text-xs font-semibold uppercase tracking-wide text-navy">
+                Sport
+              </p>
+              <h3 className="mt-2 font-display text-xl text-ink">
+                Lo sport come spazio di incontro e inclusione
+              </h3>
+              <ul className="mt-4 flex flex-wrap gap-2">
+                {sportEvents.map((event) => (
+                  <li
+                    key={event.name}
+                    className="rounded-full bg-mist-cool px-3.5 py-1.5 text-sm text-ink"
+                  >
+                    {event.name}
+                  </li>
+                ))}
+              </ul>
+            </div>
+            <div className="rounded-xl2 border border-line bg-white p-7">
+              <p className="text-xs font-semibold uppercase tracking-wide text-purple">
+                Cinema
+              </p>
+              <h3 className="mt-2 font-display text-xl text-ink">
+                Il cinema per raccontare, comprendere e cambiare prospettiva
+              </h3>
+              <ul className="mt-4 flex flex-wrap gap-2">
+                {cinemaEvents.map((event) => (
+                  <li
+                    key={event.name}
+                    className="rounded-full bg-mist-cool px-3.5 py-1.5 text-sm text-ink"
+                  >
+                    {event.name}
+                  </li>
+                ))}
+              </ul>
+            </div>
           </div>
-        </Container>
-      </section>
-
-      <section className="bg-white py-16 sm:py-24">
-        <Container>
-          <SectionHeading
-            eyebrow="Comitato scientifico"
-            title="Il nostro Comitato scientifico"
-            subtitle="Un gruppo multidisciplinare di professionisti ed esperti che accompagna ECOS nello sviluppo di metodologie, programmi e progetti ad alto impatto sociale."
-          />
           <Link
-            href="/comitato-scientifico"
-            className="mt-6 inline-flex items-center gap-2 rounded-full bg-forest px-6 py-3.5 text-[15px] font-semibold text-white hover:bg-forest-dark"
+            href="/eventi"
+            className="mt-8 inline-flex items-center gap-2 text-sm font-semibold text-navy-dark"
           >
-            Conosci il Comitato
+            Scopri tutti gli eventi
             <Icon name="arrowRight" className="h-4 w-4" />
           </Link>
         </Container>
       </section>
-
-      <section className="py-16 sm:py-24">
-        <Container>
-          <SectionHeading
-            eyebrow="Network"
-            title="Le reti di cui facciamo parte"
-            subtitle="Collaboriamo con reti locali, nazionali ed europee per condividere competenze, costruire alleanze e moltiplicare l&rsquo;impatto dei nostri progetti."
-          />
-          <Link
-            href="/network"
-            className="mt-6 inline-flex items-center gap-2 rounded-full border border-ink/15 bg-white px-6 py-3.5 text-[15px] font-semibold text-ink hover:border-ink/30"
-          >
-            Scopri i nostri network
-            <Icon name="arrowRight" className="h-4 w-4" />
-          </Link>
-        </Container>
-      </section>
-
-      <section className="bg-white py-16 sm:py-24">
-        <Container>
-          <SectionHeading
-            eyebrow="Pubblicazioni"
-            title="Conoscenza aperta e strumenti condivisi"
-            subtitle="Guide, ricerche, toolkit e materiali sviluppati attraverso i nostri progetti, disponibili per giovani, educatori, organizzazioni e professionisti."
-          />
-          <Link
-            href="/pubblicazioni"
-            className="mt-6 inline-flex items-center gap-2 rounded-full bg-forest px-6 py-3.5 text-[15px] font-semibold text-white hover:bg-forest-dark"
-          >
-            Esplora le pubblicazioni
-            <Icon name="arrowRight" className="h-4 w-4" />
-          </Link>
-        </Container>
-      </section>
-
-      <section className="py-16 sm:py-24">
-        <Container>
-          <SectionHeading
-            eyebrow="Lavora con noi"
-            title="Porta le tue competenze in ECOS"
-            subtitle="Cerchiamo persone curiose, responsabili e motivate a lavorare per i giovani, l&rsquo;inclusione e la cooperazione internazionale."
-          />
-          <Link
-            href="/lavora-con-noi"
-            className="mt-6 inline-flex items-center gap-2 rounded-full border border-ink/15 bg-white px-6 py-3.5 text-[15px] font-semibold text-ink hover:border-ink/30"
-          >
-            Scopri le opportunità
-            <Icon name="arrowRight" className="h-4 w-4" />
-          </Link>
-        </Container>
-      </section>
-
-      <CTASection
-        tone="ink"
-        title="Hai un&rsquo;idea, una domanda o vuoi partecipare?"
-        text="Scrivici. Ti aiuteremo a trovare l&rsquo;opportunità, il progetto o la collaborazione più adatta."
-        primaryLabel="Contattaci"
-        primaryHref="/contatti"
-        secondaryLabel="Scrivici via email"
-        secondaryHref="/contatti#form"
-      />
     </>
   );
 }

@@ -114,7 +114,7 @@ export default function MobileMenu({
         <Link
           href="/#aree"
           onClick={onClose}
-          className="mt-6 inline-flex justify-center rounded-full bg-coral px-5 py-3 text-sm font-semibold text-white hover:bg-coral-dark"
+          className="mt-6 inline-flex justify-center rounded-full bg-pink px-5 py-3 text-sm font-semibold text-white hover:bg-pink-dark"
         >
           Partecipa
         </Link>

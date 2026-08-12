@@ -8,21 +8,24 @@ import ProjectsArchive from "@/components/ProjectsArchive";
 import { networkExpertise, projectPartnership } from "@/data/forms";
 
 export const metadata: Metadata = {
-  title: "Cooperazione europea e internazionale",
+  title: "Progetti di cooperazione",
   description:
-    "Progetti e partenariati europei coordinati da ECOS nei settori dell'inclusione, dell'educazione e dell'innovazione sociale.",
+    "Progetti europei, ricerca, sperimentazione e partnership internazionali sui temi del disagio giovanile e dell'inclusione.",
 };
 
 export default function ProgettiPage() {
   return (
     <>
-      <Breadcrumb items={[{ label: "Home", href: "/" }, { label: "Progetti" }]} />
+      <Breadcrumb
+        items={[{ label: "Home", href: "/" }, { label: "Progetti di cooperazione" }]}
+      />
       <Hero
         compact
-        eyebrow="Cooperazione europea"
-        title="Progettiamo soluzioni europee per sfide condivise"
-        subtitle="Costruiamo partenariati internazionali per sviluppare nuovi strumenti, metodologie e modelli di intervento nei settori dell'inclusione, dell'educazione, della partecipazione e dell'innovazione sociale. Collaboriamo con organizzazioni che condividono la volontà di sperimentare, apprendere e generare un impatto concreto nei territori."
-        primaryAction={{ label: "Esplora l'archivio", href: "#archivio" }}
+        eyebrow="03 · Progetti di cooperazione"
+        title="Costruiamo progetti europei insieme."
+        subtitle="Sviluppiamo e coordiniamo progetti di cooperazione con organizzazioni europee, enti pubblici, università e realtà del terzo settore. Mettiamo in rete esperienza sul campo, ricerca, sperimentazione e nuovi modelli di intervento a favore dei giovani."
+        primaryAction={{ label: "Scopri i nostri progetti", href: "#archivio" }}
+        secondaryAction={{ label: "Proponi un progetto", href: "#proponi" }}
       />
 
       <section id="archivio" className="scroll-mt-20 py-16 sm:py-20">
@@ -46,7 +49,7 @@ export default function ProgettiPage() {
         </Container>
       </section>
 
-      <section className="py-16 sm:py-20">
+      <section id="proponi" className="scroll-mt-20 py-16 sm:py-20">
         <Container className="max-w-3xl">
           <SectionHeading
             title="Stai costruendo un progetto europeo?"

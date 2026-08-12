@@ -52,7 +52,7 @@ export default function Header() {
                   aria-expanded={dropdownOpen}
                   aria-haspopup="true"
                   onClick={() => setDropdownOpen((v) => !v)}
-                  className="flex items-center gap-1 rounded-full px-4 py-2 text-sm font-medium text-ink-soft transition-colors hover:bg-forest-light hover:text-forest-dark"
+                  className="flex items-center gap-1 rounded-full px-4 py-2 text-sm font-medium text-ink-soft transition-colors hover:bg-navy-light hover:text-navy-dark"
                 >
                   {item.label}
                   <svg
@@ -91,7 +91,7 @@ export default function Header() {
               <Link
                 key={item.href}
                 href={item.href}
-                className="rounded-full px-4 py-2 text-sm font-medium text-ink-soft transition-colors hover:bg-forest-light hover:text-forest-dark"
+                className="rounded-full px-4 py-2 text-sm font-medium text-ink-soft transition-colors hover:bg-navy-light hover:text-navy-dark"
               >
                 {item.label}
               </Link>
@@ -102,7 +102,7 @@ export default function Header() {
         <div className="flex items-center gap-2">
           <Link
             href="/#aree"
-            className="hidden rounded-full bg-coral px-5 py-2.5 text-sm font-semibold text-white shadow-sm transition-colors hover:bg-coral-dark sm:inline-flex"
+            className="hidden rounded-full bg-pink px-5 py-2.5 text-sm font-semibold text-white shadow-sm transition-colors hover:bg-pink-dark sm:inline-flex"
           >
             Partecipa
           </Link>

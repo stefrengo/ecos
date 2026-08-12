@@ -10,7 +10,7 @@ export default function CTASection({
   primaryHref,
   secondaryLabel,
   secondaryHref,
-  tone = "forest",
+  tone = "navy",
   external = false,
 }: {
   title: string;
@@ -19,13 +19,13 @@ export default function CTASection({
   primaryHref: string;
   secondaryLabel?: string;
   secondaryHref?: string;
-  tone?: "forest" | "ink" | "coral";
+  tone?: "navy" | "ink" | "pink";
   external?: boolean;
 }) {
   const toneClasses: Record<string, string> = {
-    forest: "bg-forest text-white",
+    navy: "bg-navy text-white",
     ink: "bg-ink text-white",
-    coral: "bg-coral text-white",
+    pink: "bg-pink text-white",
   };
 
   return (

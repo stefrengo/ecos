@@ -49,7 +49,7 @@ export default function ProjectDetailPage({
           <span
             className={`rounded-full px-3 py-1 text-xs font-semibold ${
               project.status === "in corso"
-                ? "bg-forest-light text-forest-dark"
+                ? "bg-navy-light text-navy-dark"
                 : "bg-line text-ink-soft"
             }`}
           >

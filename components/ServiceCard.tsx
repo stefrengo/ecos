@@ -4,10 +4,10 @@ import AudienceLabel from "./AudienceLabel";
 import { cn } from "@/lib/utils";
 
 const toneBg: Record<string, string> = {
-  forest: "bg-forest text-white",
-  coral: "bg-coral text-white",
-  sky: "bg-sky text-white",
-  sun: "bg-sun text-ink",
+  navy: "bg-navy text-white",
+  pink: "bg-pink text-white",
+  purple: "bg-purple text-white",
+  orange: "bg-orange text-ink",
 };
 
 export default function ServiceCard({
@@ -25,7 +25,7 @@ export default function ServiceCard({
   cta: string;
   href: string;
   icon: IconName;
-  tone: "forest" | "coral" | "sky" | "sun";
+  tone: "navy" | "pink" | "purple" | "orange";
 }) {
   return (
     <Link
@@ -49,7 +49,7 @@ export default function ServiceCard({
           {description}
         </p>
       </div>
-      <span className="mt-7 inline-flex items-center gap-2 text-sm font-semibold text-forest-dark">
+      <span className="mt-7 inline-flex items-center gap-2 text-sm font-semibold text-navy-dark">
         {cta}
         <Icon
           name="arrowRight"

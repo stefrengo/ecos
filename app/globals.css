@@ -1,3 +1,7 @@
+/* Font self-hosted (nessuna richiesta esterna a Google Fonts: migliore performance,
+   nessun problema privacy/GDPR sul caricamento font di terze parti). */
+@import "@fontsource-variable/manrope";
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -30,7 +34,7 @@ body {
 
 /* Focus state sempre visibile per navigazione da tastiera */
 :focus-visible {
-  outline: 3px solid theme("colors.coral.DEFAULT");
+  outline: 3px solid theme("colors.pink.DEFAULT");
   outline-offset: 3px;
   border-radius: 4px;
 }
