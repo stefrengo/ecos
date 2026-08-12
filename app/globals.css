@@ -1,0 +1,53 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  color-scheme: light;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+body {
+  @apply bg-mist text-ink font-sans antialiased;
+}
+
+/* Focus state sempre visibile per navigazione da tastiera */
+:focus-visible {
+  outline: 3px solid theme("colors.coral.DEFAULT");
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+
+/* Nasconde il focus ring solo per interazioni con il mouse, mantenendolo per tastiera */
+:focus:not(:focus-visible) {
+  outline: none;
+}
+
+.skip-link {
+  @apply fixed left-4 top-4 z-[100] -translate-y-24 rounded-full bg-ink px-5 py-3 text-sm font-semibold text-white transition-transform focus:translate-y-0;
+}
+
+.container-page {
+  @apply mx-auto w-full max-w-content px-5 sm:px-8 lg:px-10;
+}
+
+.prose-body p + p {
+  margin-top: 0.85em;
+}
