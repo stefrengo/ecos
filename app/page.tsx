@@ -1,8 +1,6 @@
 import Link from "next/link";
-import Hero from "@/components/Hero";
 import Container from "@/components/Container";
 import SectionHeading from "@/components/SectionHeading";
-import ServiceCard from "@/components/ServiceCard";
 import Icon from "@/components/Icon";
 import { services } from "@/data/services";
 import { topics } from "@/data/topics";
@@ -10,25 +8,100 @@ import { networks } from "@/data/networks";
 import { sportEvents, cinemaEvents } from "@/data/events";
 import { site } from "@/data/site";
 
+const quadrantBg: Record<string, string> = {
+  navy: "bg-navy",
+  purple: "bg-purple",
+  pink: "bg-pink",
+  orange: "bg-orange",
+};
+
 export default function HomePage() {
   return (
     <>
-      {/* Hero — testo ripreso alla lettera dal mockup PDF. */}
-      <Hero
-        eyebrow={site.pillars}
-        title={site.tagline}
-        subtitle={site.description}
-        primaryAction={{ label: "Scopri cosa facciamo", href: "#aree" }}
-        secondaryAction={{ label: "Contattaci", href: "/contatti" }}
-        imageAlt="Fotografia autentica di giovani, laboratori e attività ECOS"
-      />
+      {/* Hero — banner navy pieno + card bianca "I tre pilastri ECOS", fedele al mockup PDF. */}
+      <section className="bg-navy">
+        <Container className="grid gap-10 py-16 sm:py-20 lg:grid-cols-[1.15fr,0.85fr] lg:items-center lg:gap-14 lg:py-24">
+          <div>
+            <p className="text-sm font-semibold uppercase tracking-[0.2em] text-pink">
+              {site.pillars}
+            </p>
+            <h1 className="mt-4 font-display text-4xl leading-[1.08] text-white sm:text-5xl lg:text-[3.4rem]">
+              {site.tagline}
+            </h1>
+            <p className="mt-6 max-w-xl text-lg leading-relaxed text-white/80">
+              {site.description}
+            </p>
+            <div className="mt-8 flex flex-wrap items-center gap-4">
+              <Link
+                href="#aree"
+                className="inline-flex items-center gap-2 rounded-full bg-pink px-6 py-3.5 text-[15px] font-semibold text-white shadow-sm transition-colors hover:bg-pink-dark"
+              >
+                Scopri cosa facciamo
+                <Icon name="arrowRight" className="h-4 w-4" />
+              </Link>
+              <Link
+                href="/contatti"
+                className="inline-flex items-center gap-2 rounded-full border border-white/40 px-6 py-3.5 text-[15px] font-semibold text-white transition-colors hover:border-white"
+              >
+                Contattaci
+              </Link>
+            </div>
+          </div>
 
-      {/* I 4 quadranti operativi. */}
+          <div className="rounded-xl2 bg-white p-8 shadow-soft">
+            <p className="text-xs font-semibold uppercase tracking-wide text-pink">
+              I tre pilastri ECOS
+            </p>
+            <h2 className="mt-2 font-display text-2xl leading-tight text-navy-dark">
+              {site.pillars}
+            </h2>
+            <p className="mt-4 text-[15px] leading-relaxed text-ink-soft">
+              Coinvolgiamo i ragazzi in attività significative, li
+              connettiamo con persone, servizi e opportunità, e li
+              accompagniamo verso maggiore consapevolezza, competenze e
+              autonomia.
+            </p>
+            <div className="mt-6 flex flex-wrap gap-2">
+              {["Engage", "Connect", "Empower"].map((word) => (
+                <span
+                  key={word}
+                  className="inline-flex items-center rounded-full bg-mist-cool px-4 py-1.5 text-xs font-semibold uppercase tracking-wide text-navy-dark"
+                >
+                  {word}
+                </span>
+              ))}
+            </div>
+          </div>
+        </Container>
+      </section>
+
+      {/* I 4 quadranti operativi — solo numero, titolo, testo, link, come nel mockup. */}
       <section id="aree" className="scroll-mt-20 py-16 sm:py-24">
         <Container>
           <div className="grid gap-6 sm:grid-cols-2">
             {services.map((service) => (
-              <ServiceCard key={service.id} {...service} />
+              <Link
+                key={service.id}
+                href={service.href}
+                className={`group flex flex-col justify-between rounded-xl2 p-8 text-white transition-transform hover:-translate-y-1 ${quadrantBg[service.tone]}`}
+              >
+                <div>
+                  <p className="text-sm font-semibold text-white/70">
+                    {service.number}
+                  </p>
+                  <h3 className="mt-3 font-display text-2xl">{service.title}</h3>
+                  <p className="mt-3 text-[15px] leading-relaxed text-white/85">
+                    {service.description}
+                  </p>
+                </div>
+                <span className="mt-7 inline-flex items-center gap-2 text-sm font-semibold">
+                  {service.cta}
+                  <Icon
+                    name="arrowRight"
+                    className="h-4 w-4 transition-transform group-hover:translate-x-1"
+                  />
+                </span>
+              </Link>
             ))}
           </div>
         </Container>

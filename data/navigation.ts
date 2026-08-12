@@ -42,8 +42,15 @@ export const quadrants: NavChild[] = [
 // Alias retro-compatibile: alcuni componenti esistenti importano ancora "whatWeDo".
 export const whatWeDo = quadrants;
 
+// Nav piatta, senza menu a tendina — fedele al mockup PDF ("ECOS | Laboratori |
+// Mobilità Erasmus+ | Progetti europei | Aziende | Network | Contatti | Partecipa").
+// Eventi e News sono state aggiunte in coda: non previste nel mockup originale,
+// ma pagine reali costruite in seguito su richiesta di Stefano.
 export const mainNav: NavItem[] = [
-  { label: "Cosa facciamo", href: "/#aree", children: quadrants },
+  { label: "Laboratori", href: "/laboratori" },
+  { label: "Mobilità Erasmus+", href: "/erasmus" },
+  { label: "Progetti europei", href: "/progetti" },
+  { label: "Aziende", href: "/partnership" },
   { label: "Network", href: "/network" },
   { label: "Eventi", href: "/eventi" },
   { label: "News", href: "/news" },
