@@ -103,6 +103,9 @@ const footerLinksByLocale: Record<
   it: {
     aree: quadrantsByLocale.it,
     istituzionale: [
+      // [TEMPORANEO] link alla vecchia home, ora spostata su /landing per
+      // confronto — vedi anche Header.tsx/MobileMenu.tsx.
+      { label: "Landing", href: "/landing" },
       { label: "Chi siamo", href: "/chi-siamo" },
       { label: "Comitato scientifico", href: "/comitato-scientifico" },
       { label: "Network", href: "/network" },
@@ -119,6 +122,7 @@ const footerLinksByLocale: Record<
   en: {
     aree: quadrantsByLocale.en,
     istituzionale: [
+      { label: "Landing", href: "/landing" },
       { label: "About us", href: "/chi-siamo" },
       { label: "Scientific committee", href: "/comitato-scientifico" },
       { label: "Network", href: "/network" },

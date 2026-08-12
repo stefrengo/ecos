@@ -153,12 +153,14 @@ export default function MobileMenu({
           {t.languageSwitch}
         </Link>
 
+        {/* [TEMPORANEO] vedi Header.tsx: "Partecipa" → "Landing" finché la vecchia
+            home resta online su /landing per confronto. */}
         <Link
-          href={localeHref(locale, "/#aree")}
+          href={localeHref(locale, "/landing")}
           onClick={onClose}
           className="mt-3 inline-flex justify-center rounded-full bg-pink px-5 py-3 text-sm font-semibold text-white hover:bg-pink-dark"
         >
-          {t.participate}
+          Landing
         </Link>
       </div>
     </div>,

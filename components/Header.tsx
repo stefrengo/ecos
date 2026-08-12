@@ -49,11 +49,15 @@ export default function Header({ locale }: { locale: Locale }) {
           >
             {t.languageSwitch}
           </Link>
+          {/* [TEMPORANEO] bottone "Partecipa" sostituito da "Landing" su richiesta di
+              Stefano, finché la vecchia home (ora spostata su /landing) resta online
+              per confronto. Ripristinare {t.participate} + href "/#aree" quando la
+              landing verrà rimossa. */}
           <Link
-            href={localeHref(locale, "/#aree")}
+            href={localeHref(locale, "/landing")}
             className="hidden rounded-full bg-pink px-5 py-2.5 text-sm font-semibold text-white shadow-sm transition-colors hover:bg-pink-dark lg:inline-flex"
           >
-            {t.participate}
+            Landing
           </Link>
           <button
             type="button"
