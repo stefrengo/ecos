@@ -31,30 +31,34 @@ const quadrantIcon: Record<string, IconName> = {
 
 const quadrantTone: Record<
   string,
-  { badge: string; icon: string; fillHover: string; textHover: string }
+  { badge: string; icon: string; hoverBg: string; textHover: string }
 > = {
+  // hoverBg va sulla card stessa: deve essere "hover:", non "group-hover:"
+  // (una "group-hover:" sullo stesso elemento che porta la classe "group"
+  // non scatta mai — funziona solo sui discendenti. Era questo il bug per
+  // cui lo sfondo restava bianco e il testo, diventato bianco, spariva).
   navy: {
     badge: "bg-navy-light",
     icon: "text-navy",
-    fillHover: "group-hover:bg-navy",
+    hoverBg: "hover:bg-navy",
     textHover: "group-hover:text-white",
   },
   purple: {
     badge: "bg-purple-light",
     icon: "text-purple",
-    fillHover: "group-hover:bg-purple",
+    hoverBg: "hover:bg-purple",
     textHover: "group-hover:text-white",
   },
   pink: {
     badge: "bg-pink-light",
     icon: "text-pink",
-    fillHover: "group-hover:bg-pink",
+    hoverBg: "hover:bg-pink",
     textHover: "group-hover:text-white",
   },
   orange: {
     badge: "bg-orange-light",
     icon: "text-orange-dark",
-    fillHover: "group-hover:bg-orange",
+    hoverBg: "hover:bg-orange",
     textHover: "group-hover:text-white",
   },
 };
@@ -188,8 +192,11 @@ export default function HomePage({ params }: { params: { locale: Locale } }) {
         </Container>
       </section>
 
-      {/* 4 card categoria — icona + foto, testo alla lettera dal mockup. */}
-      <section id="aree" className="scroll-mt-20 py-20 sm:py-28">
+      {/* 4 card categoria — icona + foto, testo alla lettera dal mockup.
+          relative z-10 + margine negativo: le card si sovrappongono
+          leggermente al bordo inferiore della foto hero, come nello
+          screenshot di riferimento. */}
+      <section id="aree" className="relative z-10 -mt-20 scroll-mt-20 pb-20 sm:-mt-28 sm:pb-28">
         <Container>
           <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
             {services.map((service, i) => {
@@ -199,7 +206,7 @@ export default function HomePage({ params }: { params: { locale: Locale } }) {
                 <Reveal key={service.id} delay={i * 90}>
                   <Link
                     href={localeHref(locale, service.href)}
-                    className={`group flex h-full flex-col overflow-hidden rounded-xl2 border border-line bg-surface shadow-card transition-colors duration-300 ${tone.fillHover}`}
+                    className={`group flex h-full flex-col overflow-hidden rounded-xl2 border border-line bg-surface shadow-card transition-colors duration-300 ${tone.hoverBg}`}
                   >
                     <div className="h-40 overflow-hidden">
                       <Image
@@ -212,23 +219,23 @@ export default function HomePage({ params }: { params: { locale: Locale } }) {
                     </div>
                     <div className="relative flex flex-1 flex-col p-6">
                       <div
-                        className={`relative -mt-[3.35rem] mb-4 flex h-9 w-9 items-center justify-center rounded-full border-4 border-surface shadow-card ${tone.badge} ${tone.fillHover}`}
+                        className={`relative -mt-[3.35rem] mb-4 flex h-9 w-9 items-center justify-center rounded-full border-4 border-surface shadow-card transition-colors duration-300 ${tone.badge} group-hover:bg-white/20`}
                       >
                         <Icon
                           name={quadrantIcon[service.id]}
-                          className={`h-4 w-4 ${tone.icon} ${tone.textHover}`}
+                          className={`h-4 w-4 transition-colors duration-300 ${tone.icon} ${tone.textHover}`}
                         />
                       </div>
-                      <h3 className={`font-display text-xl text-ink ${tone.textHover}`}>
+                      <h3 className={`font-display text-xl text-ink transition-colors duration-300 ${tone.textHover}`}>
                         {service.title}
                       </h3>
                       <p
-                        className={`mt-2 flex-1 text-[14px] leading-relaxed text-ink-soft ${tone.textHover} group-hover:text-white/85`}
+                        className={`mt-2 flex-1 text-[14px] leading-relaxed text-ink-soft transition-colors duration-300 group-hover:text-white/85`}
                       >
                         {service.description}
                       </p>
                       <span
-                        className={`mt-4 inline-flex items-center gap-1.5 text-sm font-semibold text-ink ${tone.textHover}`}
+                        className={`mt-4 inline-flex items-center gap-1.5 text-sm font-semibold text-ink transition-colors duration-300 ${tone.textHover}`}
                       >
                         {t.cardsCta}
                         <Icon
