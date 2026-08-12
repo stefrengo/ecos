@@ -1,6 +1,10 @@
 /* Font self-hosted (nessuna richiesta esterna a Google Fonts: migliore performance,
-   nessun problema privacy/GDPR sul caricamento font di terze parti). */
+   nessun problema privacy/GDPR sul caricamento font di terze parti).
+   Fraunces (variabile, asse wght+opsz) per i titoli: una serif editoriale con
+   carattere, per allontanarsi dall'estetica "sans geometrico standard" dei siti
+   generati con IA. Manrope resta per il testo, per leggibilità nei form/paragrafi. */
 @import "@fontsource-variable/manrope";
+@import "@fontsource-variable/fraunces/standard.css";
 
 @tailwind base;
 @tailwind components;

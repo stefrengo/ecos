@@ -41,18 +41,16 @@ const config: Config = {
         line: "#DEE4EA",
       },
       fontFamily: {
-        // Un'unica famiglia (Manrope, self-hosted via @fontsource-variable/manrope) per
-        // titoli e testo, come nei mockup: nessuna serif, nessuna chiamata a Google
-        // Fonts (privacy + performance). I titoli usano solo pesi maggiori (700/800).
+        // Titoli: Fraunces (serif variabile, self-hosted via
+        // @fontsource-variable/fraunces) — dà carattere editoriale ai titoli,
+        // evitando l'estetica "sans geometrico" tipica dei siti generati con IA.
+        // Testo: Manrope resta per corpo, form e UI, per leggibilità.
         display: [
-          "Manrope Variable",
-          "Manrope",
-          "-apple-system",
-          "BlinkMacSystemFont",
-          "Segoe UI",
-          "ui-sans-serif",
-          "system-ui",
-          "sans-serif",
+          "Fraunces Variable",
+          "Fraunces",
+          "Georgia",
+          "ui-serif",
+          "serif",
         ],
         sans: [
           "Manrope Variable",
@@ -81,9 +79,20 @@ const config: Config = {
           "0%": { opacity: "0", transform: "translateY(14px)" },
           "100%": { opacity: "1", transform: "translateY(0)" },
         },
+        "fade-in": {
+          "0%": { opacity: "0" },
+          "100%": { opacity: "1" },
+        },
+        "slide-in": {
+          "0%": { opacity: "0", transform: "translateX(24px)" },
+          "100%": { opacity: "1", transform: "translateX(0)" },
+        },
       },
       animation: {
         rise: "rise 0.6s ease-out both",
+        "fade-in": "fade-in 1.8s ease-out 0.15s both",
+        "fade-in-fast": "fade-in 0.2s ease-out both",
+        "slide-in": "slide-in 0.35s ease-out both",
       },
     },
   },
