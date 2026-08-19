@@ -121,7 +121,7 @@ export default function ChiSiamoPage({ params }: { params: { locale: Locale } })
       <section className="py-16 sm:py-20">
         <Container>
           <SectionHeading eyebrow={t.valuesEyebrow} title={t.valuesTitle} />
-          <div className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+          <div className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
             {values.map((value) => (
               <div
                 key={value.title}
