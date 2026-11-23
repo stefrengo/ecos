@@ -5,6 +5,7 @@ const routes = [
   "",
   "/cooperation-partnership",
   "/formazione-mobilita-europea",
+  "/happy-club",
   "/cooperazione-sviluppo",
   "/chi-siamo",
   "/comitato-scientifico",

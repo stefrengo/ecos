@@ -36,7 +36,7 @@ const quadrantsByLocale: Record<Locale, NavChild[]> = {
     },
     {
       label: "HAPPY Club",
-      href: site.happyClubUrl,
+      href: "/happy-club",
       description: "Attività gratuite sul territorio per giovani in situazioni di vulnerabilità.",
     },
     {
@@ -58,7 +58,7 @@ const quadrantsByLocale: Record<Locale, NavChild[]> = {
     },
     {
       label: "HAPPY Club",
-      href: site.happyClubUrl,
+      href: "/happy-club",
       description: "Free local activities for young people in vulnerable situations.",
     },
     {
