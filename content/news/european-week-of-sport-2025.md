@@ -2,7 +2,7 @@
 title: "ECOS per la European Week of Sport 2025"
 date: "2025-09-23"
 excerpt: "Festeggiamo i 10 anni della European Week of Sport, la settimana europea che promuove sport, partecipazione e stili di vita attivi."
-category: "eventi"
+category: cooperation-partnership
 tags: ["sport", "european-week-of-sport", "partnership europee"]
 author: "Redazione ECOS"
 ---

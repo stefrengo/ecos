@@ -1,4 +1,5 @@
 import type { Locale } from "@/lib/i18n";
+import { site } from "@/data/site";
 
 export type NavChild = {
   label: string;
@@ -12,82 +13,73 @@ export type NavItem = {
   children?: NavChild[];
 };
 
-// Architettura di navigazione = "Architettura definitiva consigliata" del PDF
-// strategico: le 4 aree operative (i "quadranti") restano il cuore del menu.
-// Le pagine già presenti nel repo ma non previste nel PDF (chi-siamo, comitato
-// scientifico, pubblicazioni, lavora con noi) sono mantenute come pagine
-// istituzionali secondarie, fuori dal menu principale, solo nel footer.
+// Architettura secondo i documenti di Valerio (ECOS): 4 aree, sempre in
+// quest'ordine — HAPPY Club è sempre terzo e resta un link esterno
+// (site.happyClubUrl), senza pagina interna. Un href che inizia con "http" è
+// esterno: i componenti lo rendono con <a target="_blank">.
+
+export function isExternalHref(href: string): boolean {
+  return href.startsWith("http");
+}
 
 const quadrantsByLocale: Record<Locale, NavChild[]> = {
   it: [
     {
-      label: "Laboratori di emozioni",
-      href: "/laboratori",
-      description: "Laboratori sportivi e culturali certificati.",
+      label: "Cooperation & Partnership",
+      href: "/cooperation-partnership",
+      description: "Progetti europei, cooperazione internazionale e reti di collaborazione.",
     },
     {
-      label: "Mobilità Erasmus+",
-      href: "/erasmus",
-      description: "Job shadowing, study visit, formazione e scambi.",
+      label: "Formazione e mobilità europea",
+      href: "/formazione-mobilita-europea",
+      description: "Competenze, esperienze internazionali e nuove opportunità di crescita professionale.",
     },
     {
-      label: "Progetti di cooperazione",
-      href: "/progetti",
-      description: "Progetti europei, ricerca e partnership internazionali.",
+      label: "HAPPY Club",
+      href: site.happyClubUrl,
+      description: "Attività gratuite sul territorio per giovani in situazioni di vulnerabilità.",
     },
     {
-      label: "Responsabilità sociale e impatto",
-      href: "/partnership",
-      description: "Programmi strutturati per aziende.",
+      label: "Cooperazione allo sviluppo",
+      href: "/cooperazione-sviluppo",
+      description: "Progetti in Africa per emancipazione femminile, inclusione e sviluppo delle comunità.",
     },
   ],
   en: [
     {
-      label: "Emotion workshops",
-      href: "/laboratori",
-      description: "Certified sport and cultural workshops.",
+      label: "Cooperation & Partnership",
+      href: "/cooperation-partnership",
+      description: "European projects, international cooperation and collaboration networks.",
     },
     {
-      label: "Erasmus+ mobility",
-      href: "/erasmus",
-      description: "Job shadowing, study visits, training and exchanges.",
+      label: "European training & mobility",
+      href: "/formazione-mobilita-europea",
+      description: "Skills, international experiences and new opportunities for professional growth.",
     },
     {
-      label: "Cooperation projects",
-      href: "/progetti",
-      description: "European projects, research and international partnerships.",
+      label: "HAPPY Club",
+      href: site.happyClubUrl,
+      description: "Free local activities for young people in vulnerable situations.",
     },
     {
-      label: "Social responsibility & impact",
-      href: "/partnership",
-      description: "Structured programmes for companies.",
+      label: "Development cooperation",
+      href: "/cooperazione-sviluppo",
+      description: "Projects in Africa for women's empowerment, inclusion and community development.",
     },
   ],
 };
 
-// Nav piatta, senza menu a tendina — fedele al mockup PDF ("ECOS | Laboratori |
-// Mobilità Erasmus+ | Progetti europei | Aziende | Network | Contatti | Partecipa").
-// Eventi e News sono state aggiunte in coda: non previste nel mockup originale,
-// ma pagine reali costruite in seguito su richiesta di Stefano.
 const mainNavByLocale: Record<Locale, NavItem[]> = {
   it: [
-    { label: "Laboratori", href: "/laboratori" },
-    { label: "Mobilità Erasmus+", href: "/erasmus" },
-    { label: "Progetti europei", href: "/progetti" },
-    { label: "Aziende", href: "/partnership" },
-    { label: "Network", href: "/network" },
-    { label: "Eventi", href: "/eventi" },
+    ...quadrantsByLocale.it.map(({ label, href }) => ({ label, href })),
     { label: "News", href: "/news" },
+    { label: "Chi siamo", href: "/chi-siamo" },
     { label: "Contatti", href: "/contatti" },
   ],
   en: [
-    { label: "Workshops", href: "/laboratori" },
-    { label: "Erasmus+ mobility", href: "/erasmus" },
-    { label: "European projects", href: "/progetti" },
-    { label: "Companies", href: "/partnership" },
-    { label: "Network", href: "/network" },
-    { label: "Events", href: "/eventi" },
+    ...quadrantsByLocale.en.map(({ label, href }) => ({ label, href })),
     { label: "News", href: "/news" },
+    { label: "About us", href: "/chi-siamo" },
     { label: "Contact", href: "/contatti" },
   ],
 };
@@ -103,16 +95,13 @@ const footerLinksByLocale: Record<
   it: {
     aree: quadrantsByLocale.it,
     istituzionale: [
-      // [TEMPORANEO] link alla vecchia home, ora spostata su /landing per
-      // confronto — vedi anche Header.tsx/MobileMenu.tsx.
+      // [TEMPORANEO] link alla vecchia home, spostata su /landing per confronto.
       { label: "Landing", href: "/landing" },
       { label: "Chi siamo", href: "/chi-siamo" },
+      { label: "Reti internazionali", href: "/chi-siamo#reti" },
       { label: "Comitato scientifico", href: "/comitato-scientifico" },
-      { label: "Network", href: "/network" },
-      { label: "Eventi", href: "/eventi" },
       { label: "News", href: "/news" },
-      { label: "Pubblicazioni", href: "/pubblicazioni" },
-      { label: "Lavora con noi", href: "/lavora-con-noi" },
+      { label: "Area riservata", href: "/area-riservata" },
     ],
     legale: [
       { label: "Privacy", href: "/privacy" },
@@ -124,12 +113,10 @@ const footerLinksByLocale: Record<
     istituzionale: [
       { label: "Landing", href: "/landing" },
       { label: "About us", href: "/chi-siamo" },
+      { label: "International networks", href: "/chi-siamo#reti" },
       { label: "Scientific committee", href: "/comitato-scientifico" },
-      { label: "Network", href: "/network" },
-      { label: "Events", href: "/eventi" },
       { label: "News", href: "/news" },
-      { label: "Publications", href: "/pubblicazioni" },
-      { label: "Work with us", href: "/lavora-con-noi" },
+      { label: "Members' area", href: "/area-riservata" },
     ],
     legale: [
       { label: "Privacy", href: "/privacy" },
@@ -150,8 +137,7 @@ export function getFooterLinks(locale: Locale) {
   return footerLinksByLocale[locale];
 }
 
-// Alias retro-compatibili (default italiano) per componenti/dati che non sono
-// ancora stati aggiornati alla versione locale-aware.
+// Alias retro-compatibili (default italiano).
 export const quadrants = quadrantsByLocale.it;
 export const whatWeDo = quadrants;
 export const mainNav = mainNavByLocale.it;

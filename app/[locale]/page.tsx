@@ -3,31 +3,19 @@ import Image from "next/image";
 import Container from "@/components/Container";
 import Icon, { type IconName } from "@/components/Icon";
 import Reveal from "@/components/Reveal";
-import { getServices } from "@/data/services";
+import { getQuadrants, isExternalHref } from "@/data/navigation";
 import { getAllNews } from "@/lib/news";
 import { getCategory, toneClasses } from "@/data/newsCategories";
 import { localeHref, type Locale } from "@/lib/i18n";
 
-// Nuova homepage — struttura, container e testi ripresi alla lettera dal
-// mockup "Innovazione sociale per migliorare le comunità, insieme." fornito
-// da Stefano, ma con l'identità visiva ECOS (navy/pink/purple/orange,
-// Fraunces + Manrope, animazioni reveal/hover già in uso nel resto del sito)
-// al posto dello stile grafico verde del mockup. La vecchia homepage è stata
-// spostata su /landing (invariata).
-//
-// Contenuti volutamente segnaposto, come deciso con Stefano:
-// - statistiche di impatto e claim "primo network europeo": [SEGNAPOSTO],
-//   numeri del mockup non verificati, non riprodotti.
-// - testimonial: nessun nome/età inventati per un minore, solo placeholder
-//   esplicito in attesa di una testimonianza reale raccolta con consenso.
-// La news grid usa le 3 news reali ECOS (non gli esempi del mockup).
+// Home secondo il documento di Valerio (ECOS): claim, 4 aree (HAPPY Club
+// sempre terzo, link esterno), credenziali, reti, ultime news, newsletter
+// (solo segnaposto, nessun form attivo). Niente statistiche inventate né
+// testimonial. Foto stock Pexels da sostituire con foto autentiche ECOS;
+// mai pubblicare foto riconoscibili di minori.
 
-const quadrantIcon: Record<string, IconName> = {
-  laboratori: "ball",
-  erasmus: "plane",
-  progetti: "globe",
-  partnership: "handshake",
-};
+const areaIcons: IconName[] = ["handshake", "plane", "ball", "globe"];
+const areaTones = ["navy", "purple", "pink", "orange"] as const;
 
 const quadrantTone: Record<
   string,
@@ -63,98 +51,84 @@ const quadrantTone: Record<
   },
 };
 
-const cardPhotos: Record<string, { src: string; alt: string }> = {
-  laboratori: {
-    src: "https://images.pexels.com/photos/8941579/pexels-photo-8941579.jpeg?auto=compress&cs=tinysrgb&w=700",
-    alt: "Bambini in divisa sportiva pronti per un allenamento",
-  },
-  erasmus: {
-    src: "https://images.pexels.com/photos/37762503/pexels-photo-37762503.jpeg?auto=compress&cs=tinysrgb&w=700",
-    alt: "Due studenti con zaino in viaggio verso un'esperienza di mobilità europea",
-  },
-  progetti: {
-    src: "https://images.pexels.com/photos/8457972/pexels-photo-8457972.jpeg?auto=compress&cs=tinysrgb&w=700",
-    alt: "Gruppo multiculturale di bambini che sorride abbracciato",
-  },
-  partnership: {
+const cardPhotos = [
+  {
     src: "https://images.pexels.com/photos/7413864/pexels-photo-7413864.jpeg?auto=compress&cs=tinysrgb&w=700",
     alt: "Team diversificato durante un brainstorming in ufficio",
   },
-};
+  {
+    src: "https://images.pexels.com/photos/37762503/pexels-photo-37762503.jpeg?auto=compress&cs=tinysrgb&w=700",
+    alt: "Due studenti con zaino in viaggio verso un'esperienza di mobilità europea",
+  },
+  {
+    src: "https://images.pexels.com/photos/8941579/pexels-photo-8941579.jpeg?auto=compress&cs=tinysrgb&w=700",
+    alt: "Bambini in divisa sportiva pronti per un allenamento",
+  },
+  {
+    src: "https://images.pexels.com/photos/8457972/pexels-photo-8457972.jpeg?auto=compress&cs=tinysrgb&w=700",
+    alt: "Gruppo multiculturale di persone che sorridono insieme",
+  },
+];
 
 const copy = {
   it: {
-    heroTitle: "Innovazione sociale per migliorare le comunità, insieme.",
+    heroTitle: "Sport e cultura per una società più inclusiva",
+    heroSubtitle: "Cooperazione internazionale e progetti ad alto impatto sociale",
     heroText:
-      "Mettiamo in relazione persone, competenze e territori per trasformare sport, cultura, formazione, ricerca e cooperazione europea in opportunità di partecipazione, benessere e cambiamento duraturo.",
-    heroCta: "Scopri ECOS",
+      "ECOS promuove l'inclusione sociale attraverso lo sport, la cultura, la formazione e la cooperazione internazionale.",
+    heroCta: "Scopri le nostre aree",
     cardsCta: "Scopri di più",
-    splitTitleLine1: "Non realizziamo semplicemente progetti.",
-    splitTitleLine2: "Costruiamo opportunità.",
-    splitText:
-      "ECOS è una piattaforma europea di innovazione sociale che mette in relazione sport, cultura, ricerca e cooperazione europea per generare cambiamento nelle comunità.",
-    splitCta: "Chi siamo",
+    proof: ["Iscritti al RUNTS", "Accreditamento Erasmus+ KA120 INDIRE", "Partner ufficiale European Week of Sport", "Promotore di EASMH"],
+    stats: [
+      { value: "25+", label: "progetti" },
+      { value: "200+", label: "accordi di partenariato" },
+    ],
+    retiTitle: "Una rete di collaborazioni in Italia e in Europa",
+    retiText:
+      "Lavoriamo con servizi pubblici, organizzazioni sportive e del Terzo Settore e con reti europee per trasformare i progetti in opportunità concrete.",
+    retiCta: "Le nostre reti",
     mapAlt: "Vista dall'alto dell'Europa",
-    impactEyebrow: "Il nostro impatto",
-    impactPlaceholder: "[SEGNAPOSTO]",
-    impactPlaceholderTag: "da confermare",
-    impactProjects: "Progetti europei",
-    impactTeams: "Squadre sportive",
-    impactPeople: "Persone coinvolte ogni anno",
-    impactCountries: "Paesi",
-    impactPartners: "Partner internazionali",
-    impactClaim: "Primo network europeo Sport & Salute Mentale",
-    impactClaimTag: "claim da verificare",
-    testimonialQuote:
-      "[SEGNAPOSTO] — citazione di un partecipante o di una famiglia coinvolta in un laboratorio ECOS, da raccogliere e inserire con consenso esplicito.",
-    testimonialAttribution: "[SEGNAPOSTO] Nome, ruolo — da confermare con consenso",
     newsTitle: "News",
     newsCtaAll: "Vedi tutte le news",
     newsCtaItem: "Leggi di più",
-    ctaAziendeTitle: "Le imprese possono generare cambiamento.",
-    ctaAziendeText:
-      "Collaboriamo con aziende e fondazioni che vogliono trasformare il proprio impegno sociale in esperienze concrete e valore condiviso.",
-    ctaAziendeCta: "Imprese & Partnership",
+    newsletterTitle: "Newsletter mensile",
+    newsletterText:
+      "[SEGNAPOSTO] L'iscrizione alla newsletter mensile di ECOS sarà disponibile qui a breve.",
+    ctaTitle: "Costruiamo nuove collaborazioni",
+    ctaCta: "Collabora con noi",
   },
   en: {
-    heroTitle: "Social innovation to improve communities, together.",
+    heroTitle: "Sport and culture for a more inclusive society",
+    heroSubtitle: "International cooperation and high social-impact projects",
     heroText:
-      "We connect people, skills and territories to turn sport, culture, education, research and European cooperation into opportunities for participation, wellbeing and lasting change.",
-    heroCta: "Discover ECOS",
+      "ECOS promotes social inclusion through sport, culture, education and international cooperation.",
+    heroCta: "Discover our areas",
     cardsCta: "Learn more",
-    splitTitleLine1: "We don't just run projects.",
-    splitTitleLine2: "We build opportunities.",
-    splitText:
-      "ECOS is a European social innovation platform that connects sport, culture, research and European cooperation to generate change in communities.",
-    splitCta: "About us",
+    proof: ["Registered in RUNTS", "Erasmus+ KA120 accreditation (INDIRE)", "Official partner of the European Week of Sport", "Promoter of EASMH"],
+    stats: [
+      { value: "25+", label: "projects" },
+      { value: "200+", label: "partnership agreements" },
+    ],
+    retiTitle: "A network of collaborations in Italy and in Europe",
+    retiText:
+      "We work with public services, sports and Third Sector organisations and European networks to turn projects into concrete opportunities.",
+    retiCta: "Our networks",
     mapAlt: "Aerial view of Europe",
-    impactEyebrow: "Our impact",
-    impactPlaceholder: "[PLACEHOLDER]",
-    impactPlaceholderTag: "to be confirmed",
-    impactProjects: "European projects",
-    impactTeams: "Sport teams",
-    impactPeople: "People involved every year",
-    impactCountries: "Countries",
-    impactPartners: "International partners",
-    impactClaim: "First European Sport & Mental Health network",
-    impactClaimTag: "claim to verify",
-    testimonialQuote:
-      "[PLACEHOLDER] — quote from a participant or family involved in an ECOS workshop, to be collected and added with explicit consent.",
-    testimonialAttribution: "[PLACEHOLDER] Name, role — to be confirmed with consent",
     newsTitle: "News",
     newsCtaAll: "See all news",
     newsCtaItem: "Read more",
-    ctaAziendeTitle: "Companies can drive change.",
-    ctaAziendeText:
-      "We work with companies and foundations who want to turn their social commitment into concrete experiences and shared value.",
-    ctaAziendeCta: "Companies & Partnerships",
+    newsletterTitle: "Monthly newsletter",
+    newsletterText:
+      "[PLACEHOLDER] Signing up to the ECOS monthly newsletter will be available here soon.",
+    ctaTitle: "Let's build new collaborations",
+    ctaCta: "Work with us",
   },
 } as const;
 
 export default function HomePage({ params }: { params: { locale: Locale } }) {
   const { locale } = params;
   const t = copy[locale];
-  const services = getServices(locale);
+  const services = getQuadrants(locale);
   const latestNews = getAllNews().slice(0, 3);
 
   return (
@@ -177,6 +151,7 @@ export default function HomePage({ params }: { params: { locale: Locale } }) {
           <h1 className="max-w-2xl font-display text-4xl leading-[1.05] text-white sm:text-6xl">
             {t.heroTitle}
           </h1>
+          <p className="mt-4 max-w-xl text-lg font-semibold text-orange">{t.heroSubtitle}</p>
           <p className="mt-6 max-w-xl text-lg leading-relaxed text-white/80">
             {t.heroText}
           </p>
@@ -192,59 +167,64 @@ export default function HomePage({ params }: { params: { locale: Locale } }) {
         </Container>
       </section>
 
-      {/* 4 card categoria — icona + foto, testo alla lettera dal mockup.
-          relative z-10 + margine negativo: le card si sovrappongono
-          leggermente al bordo inferiore della foto hero, come nello
-          screenshot di riferimento. */}
+      {/* 4 aree — HAPPY Club (terza) è un link esterno. Le card si
+          sovrappongono al bordo inferiore della foto hero. */}
       <section id="aree" className="relative z-10 -mt-20 scroll-mt-20 pb-20 sm:-mt-28 sm:pb-28">
         <Container>
           <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
             {services.map((service, i) => {
-              const tone = quadrantTone[service.tone];
-              const photo = cardPhotos[service.id];
-              return (
-                <Reveal key={service.id} delay={i * 90}>
-                  <Link
-                    href={localeHref(locale, service.href)}
-                    className={`group flex h-full flex-col overflow-hidden rounded-xl2 border border-line bg-surface shadow-card transition-colors duration-300 ${tone.hoverBg}`}
-                  >
-                    <div className="h-40 overflow-hidden">
-                      <Image
-                        src={photo.src}
-                        alt={photo.alt}
-                        width={700}
-                        height={480}
-                        className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
+              const tone = quadrantTone[areaTones[i]];
+              const photo = cardPhotos[i];
+              const cls = `group flex h-full flex-col overflow-hidden rounded-xl2 border border-line bg-surface shadow-card transition-colors duration-300 ${tone.hoverBg}`;
+              const inner = (
+                <>
+                  <div className="h-40 overflow-hidden">
+                    <Image
+                      src={photo.src}
+                      alt={photo.alt}
+                      width={700}
+                      height={480}
+                      className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
+                    />
+                  </div>
+                  <div className="relative flex flex-1 flex-col p-6">
+                    <div
+                      className={`relative -mt-[3.35rem] mb-4 flex h-9 w-9 items-center justify-center rounded-full border-4 border-surface shadow-card transition-colors duration-300 ${tone.badge} group-hover:bg-white/20`}
+                    >
+                      <Icon
+                        name={areaIcons[i]}
+                        className={`h-4 w-4 transition-colors duration-300 ${tone.icon} ${tone.textHover}`}
                       />
                     </div>
-                    <div className="relative flex flex-1 flex-col p-6">
-                      <div
-                        className={`relative -mt-[3.35rem] mb-4 flex h-9 w-9 items-center justify-center rounded-full border-4 border-surface shadow-card transition-colors duration-300 ${tone.badge} group-hover:bg-white/20`}
-                      >
-                        <Icon
-                          name={quadrantIcon[service.id]}
-                          className={`h-4 w-4 transition-colors duration-300 ${tone.icon} ${tone.textHover}`}
-                        />
-                      </div>
-                      <h3 className={`font-display text-xl text-ink transition-colors duration-300 ${tone.textHover}`}>
-                        {service.title}
-                      </h3>
-                      <p
-                        className={`mt-2 flex-1 text-[14px] leading-relaxed text-ink-soft transition-colors duration-300 group-hover:text-white/85`}
-                      >
-                        {service.description}
-                      </p>
-                      <span
-                        className={`mt-4 inline-flex items-center gap-1.5 text-sm font-semibold text-ink transition-colors duration-300 ${tone.textHover}`}
-                      >
-                        {t.cardsCta}
-                        <Icon
-                          name="arrowRight"
-                          className="h-3.5 w-3.5 transition-transform duration-300 group-hover:translate-x-1"
-                        />
-                      </span>
-                    </div>
-                  </Link>
+                    <h3 className={`font-display text-xl text-ink transition-colors duration-300 ${tone.textHover}`}>
+                      {service.label}
+                    </h3>
+                    <p className="mt-2 flex-1 text-[14px] leading-relaxed text-ink-soft transition-colors duration-300 group-hover:text-white/85">
+                      {service.description}
+                    </p>
+                    <span
+                      className={`mt-4 inline-flex items-center gap-1.5 text-sm font-semibold text-ink transition-colors duration-300 ${tone.textHover}`}
+                    >
+                      {t.cardsCta}
+                      <Icon
+                        name="arrowRight"
+                        className="h-3.5 w-3.5 transition-transform duration-300 group-hover:translate-x-1"
+                      />
+                    </span>
+                  </div>
+                </>
+              );
+              return (
+                <Reveal key={service.href} delay={i * 90}>
+                  {isExternalHref(service.href) ? (
+                    <a href={service.href} target="_blank" rel="noopener noreferrer" className={cls}>
+                      {inner}
+                    </a>
+                  ) : (
+                    <Link href={localeHref(locale, service.href)} className={cls}>
+                      {inner}
+                    </Link>
+                  )}
                 </Reveal>
               );
             })}
@@ -252,39 +232,44 @@ export default function HomePage({ params }: { params: { locale: Locale } }) {
         </Container>
       </section>
 
-      {/* Split: foto (gruppo di spalle) + testo + foto satellitare dell'Europa. */}
-      <section className="bg-mist-warm py-20 sm:py-28">
-        <Container className="grid gap-14 lg:grid-cols-2 lg:items-center">
-          <Reveal className="order-2 lg:order-1">
-            <div className="overflow-hidden rounded-xl2 shadow-soft">
-              <Image
-                src="https://images.pexels.com/photos/8457972/pexels-photo-8457972.jpeg?auto=compress&cs=tinysrgb&w=1200"
-                alt="Gruppo di persone unite, braccia sulle spalle l'uno dell'altro"
-                width={1200}
-                height={900}
-                className="h-auto w-full object-cover"
-              />
-            </div>
-          </Reveal>
-          <Reveal className="order-1 lg:order-2">
-            <h2 className="font-display text-3xl text-navy-dark sm:text-4xl">
-              {t.splitTitleLine1}
-            </h2>
-            <h2 className="mb-5 font-display text-3xl text-pink-dark sm:text-4xl">
-              {t.splitTitleLine2}
-            </h2>
-            <p className="mb-8 text-[15px] leading-relaxed text-ink-soft">
-              {t.splitText}
-            </p>
+      {/* Credenziali e numeri (dal documento di Valerio). */}
+      <section className="border-y border-line bg-mist-cool py-12">
+        <Container className="grid gap-8 lg:grid-cols-[2fr_1fr] lg:items-center">
+          <ul className="grid gap-3 sm:grid-cols-2">
+            {t.proof.map((p) => (
+              <li key={p} className="flex items-center gap-2 text-[15px] font-semibold text-navy-dark">
+                <Icon name="check" className="h-4 w-4 shrink-0 text-pink" />
+                {p}
+              </li>
+            ))}
+          </ul>
+          <div className="flex gap-10">
+            {t.stats.map((st) => (
+              <div key={st.label}>
+                <p className="font-display text-4xl text-navy-dark">{st.value}</p>
+                <p className="text-[13px] text-ink-soft">{st.label}</p>
+              </div>
+            ))}
+          </div>
+        </Container>
+      </section>
+
+      {/* Reti: teaser verso /chi-siamo#reti con foto dell'Europa. */}
+      <section className="bg-mist-warm py-20 sm:py-24">
+        <Container className="grid gap-12 lg:grid-cols-2 lg:items-center">
+          <Reveal>
+            <h2 className="mb-5 font-display text-3xl text-navy-dark sm:text-4xl">{t.retiTitle}</h2>
+            <p className="mb-8 text-[15px] leading-relaxed text-ink-soft">{t.retiText}</p>
             <Link
-              href={localeHref(locale, "/chi-siamo")}
+              href={localeHref(locale, "/chi-siamo#reti")}
               className="inline-flex items-center gap-2 rounded-full border border-navy-dark/30 px-6 py-3 text-[15px] font-semibold text-navy-dark transition-colors hover:border-navy-dark"
             >
-              {t.splitCta}
+              {t.retiCta}
               <Icon name="arrowRight" className="h-4 w-4" />
             </Link>
-
-            <div className="mt-10 overflow-hidden rounded-xl2 shadow-soft">
+          </Reveal>
+          <Reveal delay={90}>
+            <div className="overflow-hidden rounded-xl2 shadow-soft">
               <Image
                 src="https://images.pexels.com/photos/30596258/pexels-photo-30596258.jpeg?auto=compress&cs=tinysrgb&w=1200"
                 alt={t.mapAlt}
@@ -292,61 +277,6 @@ export default function HomePage({ params }: { params: { locale: Locale } }) {
                 height={800}
                 className="h-auto w-full object-cover"
               />
-            </div>
-          </Reveal>
-        </Container>
-      </section>
-
-      {/* Banda statistiche — struttura del mockup ("Il nostro impatto"),
-          numeri e claim in segnaposto esplicito perché non ancora verificati. */}
-      <section className="border-y border-line bg-mist-cool py-14">
-        <Container>
-          <Reveal>
-            <p className="mb-8 text-sm font-semibold uppercase tracking-[0.15em] text-navy">
-              {t.impactEyebrow}
-            </p>
-          </Reveal>
-          <div className="grid grid-cols-2 gap-8 sm:grid-cols-3 lg:grid-cols-6">
-            {[
-              { label: t.impactProjects, value: t.impactPlaceholder },
-              { label: t.impactTeams, value: t.impactPlaceholder },
-              { label: t.impactPeople, value: `${t.impactPlaceholder}+` },
-              { label: t.impactCountries, value: `${t.impactPlaceholder}+` },
-              { label: t.impactPartners, value: `${t.impactPlaceholder}+` },
-            ].map((stat, i) => (
-              <Reveal key={stat.label} delay={i * 60}>
-                <p className="font-display text-3xl text-navy-dark">{stat.value}</p>
-                <p className="mt-1 text-[13px] text-ink-soft">
-                  {stat.label}
-                  <span className="ml-1.5 inline-block whitespace-nowrap rounded-full bg-orange-light px-2 py-0.5 text-[11px] font-bold text-orange-dark">
-                    {t.impactPlaceholderTag}
-                  </span>
-                </p>
-              </Reveal>
-            ))}
-            <Reveal delay={300}>
-              <p className="font-display text-lg leading-snug text-navy-dark">
-                {t.impactClaim}
-              </p>
-              <span className="mt-1 inline-block whitespace-nowrap rounded-full bg-orange-light px-2 py-0.5 text-[11px] font-bold text-orange-dark">
-                {t.impactClaimTag}
-              </span>
-            </Reveal>
-          </div>
-        </Container>
-      </section>
-
-      {/* Testimonial — placeholder esplicito, nessun nome/età inventati. */}
-      <section className="py-20 sm:py-24">
-        <Container>
-          <Reveal>
-            <div className="mx-auto max-w-3xl rounded-xl2 bg-navy-dark px-8 py-12 text-center text-white sm:px-16 sm:py-16">
-              <p className="font-display text-2xl leading-snug sm:text-3xl">
-                &ldquo;{t.testimonialQuote}&rdquo;
-              </p>
-              <p className="mt-6 text-sm font-semibold text-white/70">
-                {t.testimonialAttribution}
-              </p>
             </div>
           </Reveal>
         </Container>
@@ -408,31 +338,27 @@ export default function HomePage({ params }: { params: { locale: Locale } }) {
         </Container>
       </section>
 
-      {/* CTA aziende. */}
+      {/* Newsletter — solo segnaposto, nessun form attivo. */}
+      <section className="py-14">
+        <Container>
+          <div className="rounded-xl2 border border-dashed border-line p-6">
+            <h2 className="font-display text-xl text-navy-dark">{t.newsletterTitle}</h2>
+            <p className="mt-2 text-sm text-ink-soft">{t.newsletterText}</p>
+          </div>
+        </Container>
+      </section>
+
+      {/* CTA collaborazioni. */}
       <section className="bg-orange-light py-16">
-        <Container className="flex flex-col items-start justify-between gap-8 lg:flex-row lg:items-center">
-          <Reveal className="flex max-w-xl items-start gap-4">
-            <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-orange">
-              <Icon name="handshake" className="h-5 w-5 text-white" />
-            </div>
-            <div>
-              <h2 className="mb-2 font-display text-2xl text-navy-dark sm:text-3xl">
-                {t.ctaAziendeTitle}
-              </h2>
-              <p className="text-[15px] leading-relaxed text-ink-soft">
-                {t.ctaAziendeText}
-              </p>
-            </div>
-          </Reveal>
-          <Reveal delay={90}>
-            <Link
-              href={localeHref(locale, "/partnership")}
-              className="inline-flex shrink-0 items-center gap-2 rounded-full bg-orange px-6 py-3.5 text-[15px] font-semibold text-navy-dark transition-colors hover:bg-orange-dark hover:text-white"
-            >
-              {t.ctaAziendeCta}
-              <Icon name="arrowRight" className="h-4 w-4" />
-            </Link>
-          </Reveal>
+        <Container className="flex flex-col items-start justify-between gap-6 lg:flex-row lg:items-center">
+          <h2 className="font-display text-2xl text-navy-dark sm:text-3xl">{t.ctaTitle}</h2>
+          <Link
+            href={localeHref(locale, "/contatti")}
+            className="inline-flex shrink-0 items-center gap-2 rounded-full bg-orange px-6 py-3.5 text-[15px] font-semibold text-navy-dark transition-colors hover:bg-orange-dark hover:text-white"
+          >
+            {t.ctaCta}
+            <Icon name="arrowRight" className="h-4 w-4" />
+          </Link>
         </Container>
       </section>
     </>

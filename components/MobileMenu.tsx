@@ -4,7 +4,7 @@ import { useEffect, useRef, useState } from "react";
 import { createPortal } from "react-dom";
 import Link from "next/link";
 import Icon from "./Icon";
-import { getMainNav } from "@/data/navigation";
+import { getMainNav, isExternalHref } from "@/data/navigation";
 import { getUiCopy } from "@/data/uiCopy";
 import { localeHref, type Locale } from "@/lib/i18n";
 
@@ -90,7 +90,7 @@ export default function MobileMenu({
     // z-[80]: deve stare sopra il cookie banner (z-[70]), altrimenti su schermi
     // piccoli il banner può sovrapporsi e bloccare i tap sui pulsanti in fondo
     // al pannello.
-    <div className="fixed inset-0 z-[80] lg:hidden">
+    <div className="fixed inset-0 z-[80] xl:hidden">
       <div
         className="absolute inset-0 animate-fade-in-fast bg-ink/40"
         onClick={onClose}
@@ -120,13 +120,25 @@ export default function MobileMenu({
         <nav aria-label={t.mobileNavLabelInner} className="flex flex-col gap-1">
           {mainNav.map((item) => (
             <div key={item.href}>
-              <Link
-                href={localeHref(locale, item.href)}
-                onClick={onClose}
-                className="block rounded-xl px-3 py-3 text-base font-semibold text-ink hover:bg-mist"
-              >
-                {item.label}
-              </Link>
+              {isExternalHref(item.href) ? (
+                <a
+                  href={item.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  onClick={onClose}
+                  className="block rounded-xl px-3 py-3 text-base font-semibold text-ink hover:bg-mist"
+                >
+                  {item.label}
+                </a>
+              ) : (
+                <Link
+                  href={localeHref(locale, item.href)}
+                  onClick={onClose}
+                  className="block rounded-xl px-3 py-3 text-base font-semibold text-ink hover:bg-mist"
+                >
+                  {item.label}
+                </Link>
+              )}
               {item.children && (
                 <div className="ml-3 flex flex-col border-l border-line pl-3">
                   {item.children.map((child) => (

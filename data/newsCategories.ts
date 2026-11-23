@@ -10,12 +10,10 @@ export type NewsCategory = {
 };
 
 export const newsCategories: NewsCategory[] = [
-  { slug: "laboratori", label: "Laboratori", tone: "navy" },
-  { slug: "erasmus", label: "Erasmus+", tone: "purple" },
-  { slug: "progetti", label: "Progetti", tone: "pink" },
-  { slug: "aziende", label: "Aziende", tone: "orange" },
-  { slug: "network", label: "Network", tone: "navy" },
-  { slug: "eventi", label: "Eventi", tone: "purple" },
+  { slug: "cooperation-partnership", label: "Cooperation & Partnership", tone: "navy" },
+  { slug: "formazione-mobilita", label: "Formazione e mobilità europea", tone: "purple" },
+  { slug: "happy-club", label: "HAPPY Club", tone: "pink" },
+  { slug: "cooperazione-sviluppo", label: "Cooperazione allo sviluppo", tone: "orange" },
   { slug: "generale", label: "Generale", tone: "neutral" },
 ];
 

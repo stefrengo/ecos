@@ -6,7 +6,7 @@ import { useState } from "react";
 import Container from "./Container";
 import Icon from "./Icon";
 import MobileMenu from "./MobileMenu";
-import { getMainNav } from "@/data/navigation";
+import { getMainNav, isExternalHref } from "@/data/navigation";
 import { site } from "@/data/site";
 import { getUiCopy } from "@/data/uiCopy";
 import { localeHref, type Locale } from "@/lib/i18n";
@@ -30,22 +30,32 @@ export default function Header({ locale }: { locale: Locale }) {
           />
         </Link>
 
-        <nav aria-label={t.mainNavLabel} className="hidden items-center gap-0.5 lg:flex">
-          {mainNav.map((item) => (
-            <Link
-              key={item.href}
-              href={localeHref(locale, item.href)}
-              className="rounded-full px-3 py-2 text-sm font-medium text-ink-soft transition-colors hover:bg-navy-light hover:text-navy-dark"
-            >
-              {item.label}
-            </Link>
-          ))}
+        <nav aria-label={t.mainNavLabel} className="hidden items-center gap-0.5 xl:flex">
+          {mainNav.map((item) => {
+            const cls =
+              "rounded-full px-2.5 py-2 text-[13px] font-medium text-ink-soft transition-colors hover:bg-navy-light hover:text-navy-dark";
+            return isExternalHref(item.href) ? (
+              <a
+                key={item.href}
+                href={item.href}
+                target="_blank"
+                rel="noopener noreferrer"
+                className={cls}
+              >
+                {item.label}
+              </a>
+            ) : (
+              <Link key={item.href} href={localeHref(locale, item.href)} className={cls}>
+                {item.label}
+              </Link>
+            );
+          })}
         </nav>
 
         <div className="flex items-center gap-2">
           <Link
             href={locale === "en" ? "/" : "/en"}
-            className="hidden rounded-full border border-line px-3.5 py-2 text-sm font-semibold text-ink-soft transition-colors hover:border-navy hover:text-navy-dark lg:inline-flex"
+            className="hidden rounded-full border border-line px-3.5 py-2 text-sm font-semibold text-ink-soft transition-colors hover:border-navy hover:text-navy-dark xl:inline-flex"
           >
             {t.languageSwitch}
           </Link>
@@ -55,13 +65,13 @@ export default function Header({ locale }: { locale: Locale }) {
               landing verrà rimossa. */}
           <Link
             href={localeHref(locale, "/landing")}
-            className="hidden rounded-full bg-pink px-5 py-2.5 text-sm font-semibold text-white shadow-sm transition-colors hover:bg-pink-dark lg:inline-flex"
+            className="hidden rounded-full bg-pink px-5 py-2.5 text-sm font-semibold text-white shadow-sm transition-colors hover:bg-pink-dark xl:inline-flex"
           >
             Landing
           </Link>
           <button
             type="button"
-            className="inline-flex h-11 w-11 items-center justify-center rounded-full text-ink hover:bg-mist lg:hidden"
+            className="inline-flex h-11 w-11 items-center justify-center rounded-full text-ink hover:bg-mist xl:hidden"
             aria-expanded={mobileOpen}
             aria-controls="mobile-menu"
             aria-label={mobileOpen ? t.closeMenu : t.openMenu}

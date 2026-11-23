@@ -30,14 +30,22 @@ export const site = {
 } as const;
 
 // Copy localizzata (tagline/pillars/description) usata in metadata e in home.
+// metaTagline/metaDescription = claim del documento di Valerio, usati per
+// metadata e footer. tagline/description restano per la vecchia home /landing.
 export const siteCopy = {
   it: {
+    metaTagline: "Sport e cultura per una società più inclusiva",
+    metaDescription:
+      "ECOS promuove l'inclusione sociale attraverso lo sport, la cultura, la formazione e la cooperazione internazionale. Cooperazione internazionale e progetti ad alto impatto sociale.",
     tagline: "Un hub europeo di servizi sportivi e culturali per i giovani.",
     pillars: "ENGAGE · CONNECT · EMPOWER",
     description:
       "ECOS crea opportunità per minori e giovani adulti attraverso laboratori sportivi e culturali, mobilità europea e progetti di cooperazione. Lavoriamo con servizi, scuole, professionisti, organizzazioni europee e imprese per trasformare attività concrete in percorsi di crescita, relazione e autonomia.",
   },
   en: {
+    metaTagline: "Sport and culture for a more inclusive society",
+    metaDescription:
+      "ECOS promotes social inclusion through sport, culture, education and international cooperation. International cooperation and high social-impact projects.",
     tagline: "A European hub of sport and cultural services for young people.",
     pillars: "ENGAGE · CONNECT · EMPOWER",
     description:

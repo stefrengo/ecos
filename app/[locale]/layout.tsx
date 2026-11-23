@@ -21,10 +21,10 @@ export async function generateMetadata({
   return {
     metadataBase: new URL(site.url),
     title: {
-      default: `${site.name} — ${copy.tagline}`,
+      default: `${site.name} — ${copy.metaTagline}`,
       template: `%s — ${site.name}`,
     },
-    description: copy.description,
+    description: copy.metaDescription,
     alternates: {
       languages: { it: "/", en: "/en" },
     },
@@ -32,13 +32,13 @@ export async function generateMetadata({
       type: "website",
       locale: locale === "it" ? "it_IT" : "en_US",
       siteName: site.name,
-      title: `${site.name} — ${copy.tagline}`,
-      description: copy.description,
+      title: `${site.name} — ${copy.metaTagline}`,
+      description: copy.metaDescription,
     },
     twitter: {
       card: "summary_large_image",
-      title: `${site.name} — ${copy.tagline}`,
-      description: copy.description,
+      title: `${site.name} — ${copy.metaTagline}`,
+      description: copy.metaDescription,
     },
     icons: {
       icon: "/favicon.svg", // [SEGNAPOSTO] sostituire con favicon definitiva
@@ -53,7 +53,7 @@ function organizationJsonLd(locale: Locale) {
     "@type": "NGO",
     name: site.name,
     url: site.url,
-    description: copy.description,
+    description: copy.metaDescription,
     // [SEGNAPOSTO] aggiornare con dati ufficiali (logo, contatti, sedi) prima della pubblicazione
   };
 }

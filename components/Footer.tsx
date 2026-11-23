@@ -3,7 +3,7 @@ import Image from "next/image";
 import Container from "./Container";
 import Icon from "./Icon";
 import SocialIcon, { type SocialPlatform } from "./SocialIcon";
-import { getFooterLinks } from "@/data/navigation";
+import { getFooterLinks, isExternalHref } from "@/data/navigation";
 import { site, getSiteCopy } from "@/data/site";
 import { getUiCopy } from "@/data/uiCopy";
 import { localeHref, type Locale } from "@/lib/i18n";
@@ -30,7 +30,7 @@ export default function Footer({ locale }: { locale: Locale }) {
           <h2 className="font-display text-4xl text-navy-dark sm:text-5xl">
             {t.talkTitle}
           </h2>
-          <div className="space-y-6">
+          <div>
             <div>
               <p className="max-w-sm text-[15px] leading-relaxed text-navy-dark/90">
                 {t.talkText}
@@ -40,21 +40,6 @@ export default function Footer({ locale }: { locale: Locale }) {
                 className="mt-4 inline-flex items-center gap-2 rounded-full bg-navy px-6 py-3.5 text-[15px] font-semibold text-white hover:bg-navy-dark"
               >
                 {t.formCta}
-                <Icon name="arrowRight" className="h-4 w-4" />
-              </Link>
-            </div>
-            <div>
-              <p className="text-[15px] font-semibold text-navy-dark">
-                {t.workWithUsTitle}
-              </p>
-              <p className="mt-1 max-w-sm text-[15px] leading-relaxed text-navy-dark/90">
-                {t.workWithUsText}
-              </p>
-              <Link
-                href={localeHref(locale, "/lavora-con-noi")}
-                className="mt-4 inline-flex items-center gap-2 rounded-full border border-navy-dark/40 px-6 py-3.5 text-[15px] font-semibold text-navy-dark hover:border-navy-dark"
-              >
-                {t.applyCta}
                 <Icon name="arrowRight" className="h-4 w-4" />
               </Link>
             </div>
@@ -75,7 +60,7 @@ export default function Footer({ locale }: { locale: Locale }) {
               />
             </Link>
             <p className="mt-4 max-w-xs text-sm leading-relaxed text-white/70">
-              {copy.description}
+              {copy.metaDescription}
             </p>
             <div className="mt-6 flex gap-3">
               {Object.entries(site.social).map(([key, href]) => {
@@ -102,12 +87,23 @@ export default function Footer({ locale }: { locale: Locale }) {
             <ul className="space-y-2.5">
               {footerLinks.aree.map((item) => (
                 <li key={item.href}>
-                  <Link
-                    href={localeHref(locale, item.href)}
-                    className="text-sm text-white/70 hover:text-white"
-                  >
-                    {item.label}
-                  </Link>
+                  {isExternalHref(item.href) ? (
+                    <a
+                      href={item.href}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-sm text-white/70 hover:text-white"
+                    >
+                      {item.label}
+                    </a>
+                  ) : (
+                    <Link
+                      href={localeHref(locale, item.href)}
+                      className="text-sm text-white/70 hover:text-white"
+                    >
+                      {item.label}
+                    </Link>
+                  )}
                 </li>
               ))}
             </ul>
@@ -155,7 +151,7 @@ export default function Footer({ locale }: { locale: Locale }) {
         <div className="border-t border-white/10 py-6">
           <Container className="flex flex-col items-center justify-between gap-3 text-xs text-white/60 sm:flex-row">
             <p>
-              © {year} {site.legalName}. {t.rights}
+              © {year} {site.legalName} ETS. {t.rights}
             </p>
             <div className="flex gap-5">
               {footerLinks.legale.map((item) => (

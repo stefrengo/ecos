@@ -2,7 +2,7 @@
 title: "Logo Contest – Artemis"
 date: "2026-03-20"
 excerpt: "Un contest per graphic designer e creativi: ARTEMIS cerca il suo logo. In palio 250€ e una menzione speciale sul sito del progetto."
-category: "progetti"
+category: cooperation-partnership
 tags: ["contest", "design", "artemis"]
 author: "Redazione ECOS"
 ---

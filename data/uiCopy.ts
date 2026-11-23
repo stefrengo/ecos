@@ -13,7 +13,7 @@ export const uiCopy = {
     footer: {
       talkTitle: "Parliamo.",
       talkText:
-        "Compila il form per avere informazioni, segnalare un ragazzo, proporre una collaborazione, una mobilità, un progetto europeo o una partnership aziendale.",
+        "Compila il form per avere informazioni, segnalare un ragazzo, proporre una collaborazione, una mobilità o un progetto europeo.",
       formCta: "Compila il form",
       workWithUsTitle: "Vuoi lavorare con noi?",
       workWithUsText:
@@ -45,7 +45,7 @@ export const uiCopy = {
     footer: {
       talkTitle: "Let's talk.",
       talkText:
-        "Fill in the form for information, to refer a young person, or to propose a collaboration, a mobility project, a European project or a corporate partnership.",
+        "Fill in the form for information, to refer a young person, or or to propose a collaboration, a mobility or a European project.",
       formCta: "Fill in the form",
       workWithUsTitle: "Want to work with us?",
       workWithUsText: "Send us a spontaneous application and tell us about your skills and experience.",
